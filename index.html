@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escuela Primaria General "Pablo L. Sidar" · Santa María Tlahuitoltepec Mixe, Oaxaca</title>
+<meta name="description" content="Sitio oficial de la Escuela Primaria General &quot;Pablo L. Sidar&quot;, CCT 20DPR1196T, Santa María Tlahuitoltepec Mixe, Oaxaca. Convocatorias, documentos, programa del 90 aniversario y trámites.">
+<meta name="theme-color" content="#6E1A2A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Escuela Primaria General &quot;Pablo L. Sidar&quot; · 90 años">
+<meta property="og:description" content="Honrando nuestro pasado, inspirando nuestro presente y construyendo el futuro de las nuevas generaciones. 1936-2026.">
+<meta property="og:image" content="archivos/banner-90.jpg">
+<link rel="icon" href="archivos/escudo-escuela.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --guinda:#6E1A2A; --guinda-cl:#9C3346;
+  --oro:#B8860B; --oro-cl:#DFAE45; --oro-pal:#F7E9C8;
+  --verde:#2F8F5B; --verde-osc:#1E5C3C;
+  --crema:#FDFBF5; --papel:#F5EEE1;
+  --tinta:#17130F;
+  --t70:rgba(23,19,15,.74); --t45:rgba(23,19,15,.48);
+  --linea:rgba(23,19,15,.13);
+  --sombra:0 10px 30px rgba(110,26,42,.10);
+  --sombra-alta:0 20px 44px rgba(110,26,42,.20);
+  --display:"Alegreya",Georgia,serif;
+  --texto:"Karla","Segoe UI",system-ui,sans-serif;
+  --dato:"IBM Plex Mono",ui-monospace,monospace;
+  --ancho:1200px; --r:12px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--crema);color:var(--tinta);font-family:var(--texto);font-size:18.5px;line-height:1.68;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--guinda)}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:4px}
+.env{width:min(100% - 2.4rem,var(--ancho));margin-inline:auto}
+.salta{position:absolute;left:-9999px;background:var(--oro);color:#fff;padding:.7rem 1rem;z-index:999}
+.salta:focus{left:.5rem;top:.5rem}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.14;margin:0}
+h2{font-size:clamp(2.1rem,4.6vw,3.3rem);color:var(--guinda)}
+h3{font-size:1.4rem;font-weight:700}
+p{margin:0 0 1rem}
+.ojo{font-family:var(--dato);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--verde-osc);display:inline-flex;align-items:center;gap:.6rem;margin:0 0 .8rem}
+.ojo::before{content:"";width:30px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--oro),var(--verde))}
+
+/* cintilla + menú */
+.cintilla{background:var(--guinda);color:var(--oro-pal);font-family:var(--dato);font-size:.8rem;letter-spacing:.04em}
+.cintilla__in{display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;align-items:center;justify-content:space-between;padding:.55rem 0}
+.cintilla b{color:#fff;font-weight:500}
+.cintilla a{color:var(--oro-pal);text-decoration:none}
+.cintilla a:hover{color:#fff}
+
+.barra{position:sticky;top:0;z-index:80;background:rgba(253,251,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea);transition:box-shadow .3s}
+.barra[data-fija="true"]{box-shadow:0 6px 24px rgba(110,26,42,.10)}
+.barra__in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 0}
+.marca{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--tinta)}
+.marca img{width:56px;height:56px;object-fit:contain;flex:none;transition:transform .5s}
+.marca:hover img{transform:scale(1.08) rotate(-4deg)}
+.marca__nom{font-family:var(--display);font-weight:800;font-size:1.22rem;line-height:1.05;display:block}
+.marca__sub{font-family:var(--dato);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t45)}
+
+.nav{display:flex;align-items:center;gap:.1rem;list-style:none;margin:0;padding:0}
+.nav>li{position:relative}
+.nav__b{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:.6rem .62rem;border-radius:8px;font-size:.98rem;color:var(--tinta);text-decoration:none;position:relative}
+.nav__b::after{content:"";position:absolute;left:.62rem;right:.62rem;bottom:.26rem;height:2px;border-radius:2px;background:var(--guinda);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav__b:hover::after,.nav>li[data-abierto="true"] .nav__b::after,.nav__b[aria-current="true"]::after{transform:scaleX(1)}
+.flecha{font-size:.58rem;transition:transform .3s;color:var(--t45)}
+.nav>li[data-abierto="true"] .flecha{transform:rotate(180deg)}
+.desplegable{position:absolute;top:calc(100% + .5rem);left:-.4rem;min-width:280px;background:#fff;border:1px solid var(--linea);border-radius:var(--r);box-shadow:var(--sombra-alta);padding:.5rem;list-style:none;margin:0;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.nav>li[data-abierto="true"] .desplegable{opacity:1;visibility:visible;transform:translateY(0)}
+.desplegable a{display:block;padding:.6rem .75rem;border-radius:8px;text-decoration:none;color:var(--tinta);font-size:.97rem;line-height:1.3;transition:background .2s,transform .2s}
+.desplegable a small{display:block;color:var(--t45);font-size:.8rem}
+.desplegable a:hover{background:var(--papel);transform:translateX(4px)}
+.cta{background:var(--guinda);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;padding:.7rem 1.2rem;border-radius:999px;white-space:nowrap;transition:transform .25s,background .25s}
+.cta:hover{transform:translateY(-2px);background:var(--guinda-cl)}
+.menu-btn{display:none;background:none;border:1px solid var(--linea);border-radius:8px;padding:.55rem .8rem;cursor:pointer}
+
+/* portada */
+.banner{width:100%;height:auto;display:block}
+.portada{background:var(--papel);border-bottom:1px solid var(--linea)}
+.portada__in{padding:clamp(2.4rem,5vw,4rem) 0 clamp(2.4rem,5vw,4rem);display:grid;grid-template-columns:1.4fr .6fr;gap:2.5rem;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--dato);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--guinda);background:#fff;border:1px solid var(--linea);padding:.45rem 1rem;border-radius:999px;margin-bottom:1.3rem}
+.pulso{width:9px;height:9px;border-radius:50%;background:var(--verde);animation:pulso 2.2s ease-in-out infinite}
+@keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(47,143,91,.6)}50%{box-shadow:0 0 0 10px rgba(47,143,91,0)}}
+.portada h1{font-size:clamp(2.4rem,5.6vw,4.1rem);color:var(--guinda);letter-spacing:-.02em}
+.portada h1 em{display:block;font-style:italic;font-weight:500;font-size:.58em;color:var(--verde-osc);margin-top:.3rem}
+.portada__texto{color:var(--t70);font-size:1.16rem;max-width:36rem;margin-top:1.2rem}
+.portada__frase{font-family:var(--display);font-style:italic;font-size:1.18rem;color:var(--guinda);border-left:4px solid var(--oro);padding-left:1.1rem;margin-top:1.4rem;max-width:34rem}
+.acciones{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.boton{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:700;font-size:1.02rem;padding:.95rem 1.6rem;border-radius:999px;border:2px solid transparent;transition:transform .25s,background .25s,box-shadow .25s}
+.boton--oro{background:var(--oro);color:#fff;box-shadow:0 8px 20px rgba(184,134,11,.28)}
+.boton--oro:hover{transform:translateY(-3px);background:#a1750a}
+.boton--linea{border-color:var(--guinda);color:var(--guinda)}
+.boton--linea:hover{background:var(--guinda);color:#fff;transform:translateY(-3px)}
+.sello{justify-self:center;width:min(340px,40vw);perspective:1400px}
+.sello__caras{position:relative;transform-style:preserve-3d;animation:giro 16s linear infinite}
+.sello__cara{width:100%;display:block;backface-visibility:hidden;filter:drop-shadow(0 12px 24px rgba(110,26,42,.25))}
+.sello__cara--b{position:absolute;inset:0;transform:rotateY(180deg)}
+@keyframes giro{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+
+.cinta{height:34px;background-image:url("archivos/cinta.png");background-repeat:repeat-x;background-size:auto 34px;background-color:var(--crema)}
+.franja{background:var(--guinda);color:#fff;overflow:hidden;padding:.75rem 0}
+.franja__tren{display:flex;width:max-content;animation:corre 44s linear infinite;font-family:var(--dato);font-size:.88rem;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.franja__tren span{display:flex;align-items:center;gap:1.6rem;padding-right:1.6rem}
+.franja__tren i{color:var(--oro-cl);font-style:normal}
+@keyframes corre{to{transform:translateX(-50%)}}
+.franja:hover .franja__tren{animation-play-state:paused}
+
+/* secciones */
+.seccion{padding:clamp(3.2rem,6vw,5rem) 0}
+.seccion--papel{background:var(--papel)}
+.seccion--verde{background:var(--verde-osc);color:#fff}
+.seccion--verde h2,.seccion--verde h3{color:#fff}
+.seccion--verde .ojo{color:#9FE3BC}
+.cabeza{max-width:48rem;margin-bottom:2.4rem}
+.cabeza p{color:var(--t70);margin-top:.9rem;font-size:1.1rem}
+.seccion--verde .cabeza p{color:rgba(255,255,255,.85)}
+.rejilla{display:grid;gap:1.5rem}
+.r2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.r3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.r4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1.7rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.tarjeta::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--verde),var(--oro))}
+.tarjeta:hover{transform:translateY(-6px);box-shadow:var(--sombra)}
+.tarjeta--guinda::before{background:linear-gradient(90deg,var(--guinda),var(--oro))}
+.tarjeta h3{margin-bottom:.5rem;color:var(--guinda)}
+.tarjeta p:last-child{margin-bottom:0}
+.tarjeta__icono{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem;margin-bottom:1rem;background:var(--papel)}
+.pie-nota{font-family:var(--dato);font-size:.8rem;color:var(--t45);letter-spacing:.04em}
+.chip{display:inline-block;font-family:var(--dato);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;background:var(--papel);color:var(--verde-osc);border:1px solid var(--linea);padding:.24rem .7rem;border-radius:999px;margin-bottom:.6rem}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rev[data-visible="true"]{opacity:1;transform:none}
+
+/* pestañas */
+.pestanas{display:flex;gap:.3rem;flex-wrap:wrap;border-bottom:2px solid var(--linea);margin-bottom:2rem}
+.pestana{background:none;border:0;cursor:pointer;padding:.85rem 1.2rem;font-weight:700;font-size:1.02rem;color:var(--t45);border-radius:10px 10px 0 0;position:relative;transition:color .25s,background .25s}
+.pestana:hover{color:var(--tinta);background:rgba(110,26,42,.06)}
+.pestana[aria-selected="true"]{color:var(--guinda)}
+.pestana[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;background:linear-gradient(90deg,var(--guinda),var(--oro));border-radius:3px}
+.panel[hidden]{display:none}
+.panel{animation:entra .45s cubic-bezier(.2,.7,.3,1)}
+@keyframes entra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.seccion--verde .pestanas{border-bottom-color:rgba(255,255,255,.22)}
+.seccion--verde .pestana{color:rgba(255,255,255,.65)}
+.seccion--verde .pestana[aria-selected="true"]{color:#fff}
+.seccion--verde .pestana[aria-selected="true"]::after{background:var(--oro-cl)}
+
+/* avisos */
+.aviso{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1.6rem;display:flex;flex-direction:column;gap:.55rem;transition:transform .3s,box-shadow .3s;border-left:6px solid var(--oro)}
+.aviso:hover{transform:translateY(-5px);box-shadow:var(--sombra)}
+.eti{align-self:flex-start;font-family:var(--dato);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .8rem;border-radius:999px;background:var(--papel);color:var(--guinda)}
+.aviso__fecha{font-family:var(--dato);font-size:.82rem;color:var(--t45)}
+.aviso h3{font-size:1.24rem}
+.aviso p{margin:0;font-size:1.03rem;color:var(--t70)}
+.enlace{font-weight:700;font-size:.98rem;text-decoration:none;color:var(--guinda);border-bottom:2px solid rgba(110,26,42,.3);align-self:flex-start;margin-top:.3rem;transition:border-color .25s}
+.enlace:hover{border-color:var(--guinda)}
+
+/* carteles */
+.carteles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem}
+.cartel{background:#fff;border:1px solid var(--linea);border-radius:var(--r);overflow:hidden;transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
+.cartel:hover{transform:translateY(-8px);box-shadow:var(--sombra-alta)}
+.cartel__img{cursor:zoom-in;overflow:hidden;background:var(--papel)}
+.cartel__img img{width:100%;transition:transform .6s}
+.cartel:hover .cartel__img img{transform:scale(1.05)}
+.cartel__cuerpo{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.cartel__cuerpo h3{font-size:1.18rem;color:var(--guinda)}
+.cartel__datos{list-style:none;margin:.2rem 0 0;padding:0;display:grid;gap:.35rem;font-size:.98rem;color:var(--t70)}
+.cartel__datos b{font-family:var(--dato);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--verde-osc);margin-right:.4rem}
+
+/* documentos */
+.doc{display:flex;gap:1.1rem;align-items:center;background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1.2rem 1.3rem;text-decoration:none;color:inherit;transition:transform .3s,box-shadow .3s,border-color .3s}
+.doc:hover{transform:translateY(-4px);box-shadow:var(--sombra);border-color:var(--oro)}
+.doc__ic{width:50px;height:50px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--papel);color:var(--guinda);font-family:var(--dato);font-size:.76rem;font-weight:500}
+.doc b{display:block;font-family:var(--display);font-size:1.14rem;color:var(--guinda)}
+.doc small{color:var(--t45);font-size:.9rem}
+
+/* cifras */
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}
+.cifra{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:1.7rem 1.2rem;text-align:center;transition:transform .3s,background .3s}
+.cifra:hover{transform:translateY(-6px);background:rgba(255,255,255,.15)}
+.cifra__n{font-family:var(--display);font-size:clamp(2.6rem,5.4vw,3.6rem);font-weight:800;color:var(--oro-cl);line-height:1}
+.cifra__t{font-family:var(--dato);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:.55rem}
+
+/* programa */
+.horas{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+.horas li{display:grid;grid-template-columns:7rem 1fr;gap:1.1rem;align-items:baseline;background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1rem 1.2rem;transition:transform .25s,border-color .25s}
+.horas li:hover{transform:translateX(6px);border-color:var(--oro)}
+.horas b{font-family:var(--dato);font-size:.9rem;color:var(--guinda)}
+.horas span{font-size:1.04rem;color:var(--t70)}
+.dia-cab{display:flex;flex-wrap:wrap;gap:.9rem;align-items:baseline;margin-bottom:1.2rem}
+.dia-cab h3{font-size:1.6rem;color:var(--guinda)}
+.dia-cab small{font-family:var(--dato);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-osc)}
+.honor{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.55rem;font-size:1.02rem;color:var(--t70)}
+.honor li{padding-left:1.5rem;position:relative}
+.honor li::before{content:"★";position:absolute;left:0;color:var(--oro)}
+
+/* galería */
+.filtros{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.7rem}
+.filtro{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:.55rem 1.2rem;font-size:.96rem;cursor:pointer;transition:all .25s}
+.filtro:hover{border-color:var(--verde);color:var(--verde-osc)}
+.filtro[aria-pressed="true"]{background:var(--guinda);color:#fff;border-color:var(--guinda)}
+.galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.2rem}
+.foto{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--linea);cursor:zoom-in;transition:transform .35s,box-shadow .35s;animation:entra .5s both}
+.foto:hover{transform:translateY(-6px);box-shadow:var(--sombra-alta)}
+.foto img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .6s}
+.foto:hover img{transform:scale(1.07)}
+.foto figcaption{padding:.9rem 1.1rem}
+.foto figcaption b{display:block;font-family:var(--display);font-size:1.1rem;color:var(--guinda)}
+.foto figcaption small{color:var(--t45);font-size:.9rem}
+.visor{position:fixed;inset:0;background:rgba(23,19,15,.94);display:none;place-items:center;z-index:200;padding:1.2rem}
+.visor[data-abierto="true"]{display:grid;animation:entra .3s}
+.visor img{max-width:min(1100px,94vw);max-height:80vh;border-radius:var(--r);object-fit:contain}
+.visor p{color:#fff;text-align:center;margin:1rem 0 0;font-family:var(--dato);font-size:.95rem}
+.visor__x{position:absolute;top:1rem;right:1.3rem;background:none;border:0;color:#fff;font-size:2.6rem;cursor:pointer;line-height:1}
+
+/* videos */
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#2b0a12;border:1px solid var(--linea)}
+.video iframe{width:100%;height:100%;border:0;display:block}
+.video__tapa{position:absolute;inset:0;width:100%;height:100%;border:0;cursor:pointer;color:#fff;display:grid;place-items:center;gap:.8rem;padding:1.2rem;background-size:cover;background-position:center;text-align:center}
+.video__tapa::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,19,15,.2),rgba(23,19,15,.8))}
+.video__play{position:relative;width:78px;height:78px;border-radius:50%;background:var(--oro);display:grid;place-items:center;color:#fff;font-size:1.6rem;transition:transform .3s}
+.video__tapa:hover .video__play{transform:scale(1.12)}
+.video__tapa b{position:relative;font-family:var(--display);font-size:1.3rem}
+
+/* acordeón */
+.acordeon{border:1px solid var(--linea);border-radius:var(--r);overflow:hidden;background:#fff}
+.acordeon+.acordeon{margin-top:.8rem}
+.acordeon summary{cursor:pointer;padding:1.2rem 1.4rem;font-weight:700;font-family:var(--display);font-size:1.22rem;color:var(--guinda);display:flex;justify-content:space-between;gap:1rem;align-items:center;list-style:none}
+.acordeon summary::-webkit-details-marker{display:none}
+.acordeon summary::after{content:"+";font-family:var(--texto);font-size:1.7rem;color:var(--oro);transition:transform .3s;line-height:1}
+.acordeon[open] summary::after{transform:rotate(45deg)}
+.acordeon summary:hover{background:var(--papel)}
+.acordeon__cuerpo{padding:0 1.4rem 1.4rem;animation:entra .35s}
+.pasos{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+.pasos li{counter-increment:p;display:grid;grid-template-columns:2rem 1fr;gap:.9rem;font-size:1.02rem;color:var(--t70)}
+.pasos li::before{content:counter(p);font-family:var(--dato);font-size:.86rem;color:#fff;background:var(--verde);border-radius:50%;width:2rem;height:2rem;display:grid;place-items:center}
+
+/* directorio */
+.persona{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1.5rem;text-align:center;transition:transform .3s,box-shadow .3s}
+.persona:hover{transform:translateY(-6px);box-shadow:var(--sombra)}
+.persona img{width:78px;height:78px;margin:0 auto .9rem;border-radius:50%;object-fit:cover}
+.persona b{font-family:var(--display);font-size:1.12rem;display:block;color:var(--guinda)}
+.persona small{color:var(--t45);font-size:.92rem}
+
+/* contacto */
+.dl{margin:0;display:grid;gap:1.15rem}
+.dl div{border-bottom:1px dotted var(--linea);padding-bottom:.9rem}
+.dl dt{font-family:var(--dato);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t45)}
+.dl dd{margin:.3rem 0 0;font-size:1.06rem}
+.mapa{width:100%;min-height:340px;border:1px solid var(--linea);border-radius:var(--r)}
+
+/* pie */
+.pie{background:var(--guinda);color:rgba(255,255,255,.85);padding:3.4rem 0 2rem;font-size:1rem}
+.pie h4{font-family:var(--dato);font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--oro-cl);font-weight:500;margin-bottom:.9rem}
+.pie a{color:rgba(255,255,255,.88);text-decoration:none;display:block;padding:.22rem 0;transition:color .2s,transform .2s}
+.pie a:hover{color:var(--oro-cl);transform:translateX(4px)}
+.pie__marca{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem}
+.pie__marca img{width:64px;height:64px;object-fit:contain;flex:none;background:#fff;border-radius:12px;padding:5px}
+.sellos{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:.8rem}
+.sellos img{height:66px;width:auto;object-fit:contain;background:#fff;border-radius:12px;padding:6px}
+.pie__fin{margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.22);font-family:var(--dato);font-size:.8rem;color:rgba(255,255,255,.7);display:flex;flex-wrap:wrap;gap:.7rem 1.5rem;justify-content:space-between;align-items:center}
+.contador{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;padding:.4rem .95rem;border-radius:999px;font-family:var(--dato);font-size:.8rem}
+.arriba{position:fixed;right:1.1rem;bottom:1.1rem;width:52px;height:52px;border-radius:50%;border:0;background:var(--guinda);color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:var(--sombra);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:90}
+.arriba[data-visible="true"]{opacity:1;pointer-events:auto}
+.arriba:hover{transform:translateY(-4px)}
+
+@media (max-width:1060px){
+  .menu-btn{display:block;position:relative;z-index:95}
+  .cta{display:none}
+  .nav{position:fixed;inset:0 0 0 auto;width:min(370px,88vw);background:var(--crema);flex-direction:column;align-items:stretch;gap:0;padding:5.5rem 1.2rem 3rem;overflow-y:auto;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.3,1);box-shadow:-14px 0 40px rgba(0,0,0,.18)}
+  .nav[data-abierto="true"]{transform:none}
+  .nav__b{width:100%;justify-content:space-between;padding:1rem .5rem;font-size:1.12rem;border-bottom:1px solid var(--linea)}
+  .nav__b::after{display:none}
+  .desplegable{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:transparent;padding:.2rem 0 .6rem .8rem;max-height:0;overflow:hidden;transition:max-height .35s}
+  .nav>li[data-abierto="true"] .desplegable{max-height:560px}
+}
+@media (max-width:860px){
+  .portada__in{grid-template-columns:1fr;gap:1.6rem}
+  .sello{width:min(240px,55vw);order:-1;justify-self:center}
+}
+@media (max-width:520px){ .horas li{grid-template-columns:1fr;gap:.2rem} }
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<a class="salta" href="#contenido">Ir al contenido</a>
+
+<div class="cintilla">
+  <div class="env cintilla__in">
+    <div style="display:flex;flex-wrap:wrap;gap:.35rem 1.3rem">
+      <span>CCT <b data-c="cct"></b></span>
+      <span>Zona <b data-c="zona"></b></span>
+      <span>Turno <b data-c="turno"></b></span>
+      <span>Ciclo <b data-c="ciclo"></b></span>
+    </div>
+    <div style="display:flex;gap:1rem">
+      <a href="#contacto">Contacto</a>
+      <a data-l="facebook" href="#">Facebook</a>
+    </div>
+  </div>
+</div>
+
+<header class="barra" id="barra">
+  <div class="env barra__in">
+    <a class="marca" href="#inicio">
+      <img src="archivos/escudo-escuela.png" alt="Escudo de la escuela">
+      <span>
+        <span class="marca__nom">Pablo L. Sidar</span>
+        <span class="marca__sub">Primaria general · 1936</span>
+      </span>
+    </a>
+    <nav aria-label="Menú principal">
+      <ul class="nav" id="nav">
+        <li><a class="nav__b" href="#inicio">Inicio</a></li>
+        <li><a class="nav__b" href="#convocatorias">Convocatorias</a></li>
+        <li><a class="nav__b" href="#documentos">Documentos</a></li>
+        <li data-menu>
+          <button class="nav__b" aria-expanded="false">La escuela <span class="flecha">▼</span></button>
+          <ul class="desplegable">
+            <li><a href="#escuela">Identidad<small>Misión, visión y valores</small></a></li>
+            <li><a href="#escuela">Historia<small>De 1936 a nuestros días</small></a></li>
+            <li><a href="#escuela">Pablo L. Sidar<small>El aviador que da nombre a la escuela</small></a></li>
+            <li><a href="#directorio">Directorio<small>Personal del plantel</small></a></li>
+          </ul>
+        </li>
+        <li data-menu>
+          <button class="nav__b" aria-expanded="false">Oferta <span class="flecha">▼</span></button>
+          <ul class="desplegable">
+            <li><a href="#oferta">Campos formativos<small>Qué se aprende</small></a></li>
+            <li><a href="#oferta">Grados<small>De primero a sexto</small></a></li>
+            <li><a href="#oferta">Talleres<small>Danza, música, radio, ajedrez</small></a></li>
+            <li><a href="#oferta">Servicios<small>Biblioteca, cocina, cómputo</small></a></li>
+          </ul>
+        </li>
+        <li data-menu>
+          <button class="nav__b" aria-expanded="false">90 años <span class="flecha">▼</span></button>
+          <ul class="desplegable">
+            <li><a href="#programa">Programa de actividades<small>Del 3 al 7 de octubre</small></a></li>
+            <li><a href="#galeria">Galería<small>Vida escolar en imágenes</small></a></li>
+            <li><a href="#videos">Videos<small>Material audiovisual</small></a></li>
+          </ul>
+        </li>
+        <li><a class="nav__b" href="#tramites">Trámites</a></li>
+        <li><a class="nav__b" href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="cta" href="#programa">Programa del 90 aniversario</a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">☰ Menú</button>
+  </div>
+</header>
+
+<main id="contenido">
+
+<img class="banner" src="archivos/banner-90.jpg" alt="Noventa aniversario de la Escuela Primaria General Pablo L. Sidar, 1936-2026">
+
+<section class="portada" id="inicio">
+  <div class="env portada__in">
+    <div>
+      <span class="eyebrow"><i class="pulso"></i> Inscripciones abiertas todo el año</span>
+      <h1>Escuela Primaria General <em>"Pablo L. Sidar"</em></h1>
+      <p class="portada__texto" data-c="bienvenida"></p>
+      <p class="portada__frase" data-c="lema"></p>
+      <div class="acciones">
+        <a class="boton boton--oro" href="#convocatorias">Ver convocatorias →</a>
+        <a class="boton boton--linea" href="#programa">Programa del aniversario</a>
+      </div>
+    </div>
+    <div class="sello">
+      <div class="sello__caras">
+        <img class="sello__cara" src="archivos/logo-90-completo.png" alt="Emblema del 90 aniversario de la escuela">
+        <img class="sello__cara sello__cara--b" src="archivos/logo-90-completo.png" alt="" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="franja"><div class="franja__tren" id="franja"></div></div>
+
+<section class="seccion" id="convocatorias">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Participa</p>
+      <h2>Convocatorias y torneos</h2>
+      <p>Inscripciones en la dirección de la escuela. Toca cualquier cartel para verlo completo.</p>
+    </div>
+    <div class="carteles rev" id="lista-carteles"></div>
+  </div>
+</section>
+
+<div class="cinta" role="presentation"></div>
+
+<section class="seccion seccion--papel" id="documentos">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Consulta pública</p>
+      <h2>Documentos</h2>
+      <p>Calendario escolar, convocatorias, requisitos y demás documentos de la escuela. Se abren en una pestaña nueva.</p>
+    </div>
+    <div class="rejilla r3 rev" id="lista-documentos"></div>
+  </div>
+</section>
+
+<section class="seccion" id="avisos">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Comunicación oficial</p>
+      <h2>Avisos</h2>
+      <p>Lo que la dirección publica aquí es lo mismo que se anuncia en la escuela y en la asamblea.</p>
+    </div>
+    <div class="rejilla r3 rev" id="lista-avisos"></div>
+  </div>
+</section>
+
+<section class="seccion seccion--papel" id="programa">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">1936 · 2026</p>
+      <h2>Programa del 90 aniversario</h2>
+      <p>Cinco días de historia, esfuerzo y logros, del sábado 3 al miércoles 7 de octubre de 2026.</p>
+    </div>
+    <div class="rev">
+      <div class="pestanas" role="tablist" aria-label="Días del programa" id="dias-tabs"></div>
+      <div id="dias-paneles"></div>
+    </div>
+    <div class="rejilla r2 rev" style="margin-top:2.6rem">
+      <div>
+        <h3 style="color:var(--guinda);margin-bottom:.6rem">Invitados de honor</h3>
+        <ul class="honor" id="honor"></ul>
+      </div>
+      <figure style="cursor:zoom-in;border:2px solid var(--oro);border-radius:var(--r);overflow:hidden;margin:0" data-img="archivos/programa-actividades.jpg" data-pie="Programa de actividades del 90 aniversario">
+        <img src="archivos/programa-actividades.jpg" alt="Programa completo de actividades" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="escuela">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Nuestra institución</p>
+      <h2>La escuela</h2>
+      <p>Plantel de organización completa que atiende los seis grados de educación primaria, sostenido por el colectivo docente, las familias y la autoridad comunitaria.</p>
+    </div>
+    <div class="rev" data-pestanas>
+      <div class="pestanas" role="tablist" aria-label="Información de la escuela">
+        <button class="pestana" role="tab" aria-selected="true" data-panel="p-identidad">Identidad</button>
+        <button class="pestana" role="tab" aria-selected="false" data-panel="p-historia">Historia</button>
+        <button class="pestana" role="tab" aria-selected="false" data-panel="p-sidar">Pablo L. Sidar</button>
+        <button class="pestana" role="tab" aria-selected="false" data-panel="p-infra">Infraestructura</button>
+      </div>
+      <div class="panel" id="p-identidad" role="tabpanel">
+        <div class="rejilla r3">
+          <article class="tarjeta"><div class="tarjeta__icono">🎯</div><h3>Misión</h3><p data-c="mision"></p></article>
+          <article class="tarjeta tarjeta--guinda"><div class="tarjeta__icono">🔭</div><h3>Visión</h3><p data-c="vision"></p></article>
+          <article class="tarjeta"><div class="tarjeta__icono">🤝</div><h3>Valores</h3><p id="valores"></p></article>
+        </div>
+      </div>
+      <div class="panel" id="p-historia" role="tabpanel" hidden><div class="rejilla r2" id="historia"></div></div>
+      <div class="panel" id="p-sidar" role="tabpanel" hidden>
+        <div class="rejilla r2">
+          <div><h3 style="font-size:1.7rem;color:var(--guinda);margin-bottom:1rem" id="sidar-titulo"></h3><div id="sidar-texto"></div></div>
+          <div><img src="archivos/sello-90.png" alt="Emblema del 90 aniversario" style="max-width:250px;margin:0 auto 1.2rem"><p class="pie-nota" id="sidar-fuente"></p></div>
+        </div>
+      </div>
+      <div class="panel" id="p-infra" role="tabpanel" hidden><div class="rejilla r4" id="infraestructura"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--papel" id="oferta">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Formación</p>
+      <h2>Oferta educativa</h2>
+      <p>Trabajamos los cuatro campos formativos del plan de estudios vigente, con proyectos que parten de la vida de la comunidad.</p>
+    </div>
+    <div class="rev" data-pestanas>
+      <div class="pestanas" role="tablist" aria-label="Oferta educativa">
+        <button class="pestana" role="tab" aria-selected="true" data-panel="p-campos">Campos formativos</button>
+        <button class="pestana" role="tab" aria-selected="false" data-panel="p-grados">Grados</button>
+        <button class="pestana" role="tab" aria-selected="false" data-panel="p-talleres">Talleres</button>
+        <button class="pestana" role="tab" aria-selected="false" data-panel="p-servicios">Servicios</button>
+      </div>
+      <div class="panel" id="p-campos" role="tabpanel"><div class="rejilla r4" id="campos"></div></div>
+      <div class="panel" id="p-grados" role="tabpanel" hidden><div class="rejilla r3" id="grados"></div></div>
+      <div class="panel" id="p-talleres" role="tabpanel" hidden><div class="rejilla r3" id="talleres"></div></div>
+      <div class="panel" id="p-servicios" role="tabpanel" hidden><div class="rejilla r3" id="servicios"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--verde">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">La escuela en números</p>
+      <h2>Noventa años de servicio</h2>
+    </div>
+    <div class="cifras rev" id="cifras"></div>
+  </div>
+</section>
+
+<section class="seccion" id="galeria">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Vida escolar</p>
+      <h2>Galería</h2>
+      <p>Actos cívicos, proyectos de aula, talleres y el trabajo conjunto con las familias.</p>
+    </div>
+    <div class="filtros rev" id="filtros"></div>
+    <div class="galeria rev" id="rejilla-galeria"></div>
+  </div>
+</section>
+
+<section class="seccion seccion--papel" id="videos">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Material audiovisual</p>
+      <h2>Videos</h2>
+      <p>Se cargan sólo cuando los abres, para que el sitio funcione bien con conexiones lentas.</p>
+    </div>
+    <div class="rejilla r2 rev" id="lista-videos"></div>
+  </div>
+</section>
+
+<section class="seccion" id="directorio">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Personal</p>
+      <h2>Directorio escolar</h2>
+    </div>
+    <div class="rejilla r4 rev" id="lista-directorio"></div>
+  </div>
+</section>
+
+<section class="seccion seccion--papel" id="tramites">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Atención a familias</p>
+      <h2>Trámites escolares</h2>
+      <p>Todos se atienden en la dirección, sin costo. Los documentos se entregan firmados y sellados.</p>
+    </div>
+    <div class="rev" id="lista-tramites"></div>
+  </div>
+</section>
+
+<section class="seccion" id="participacion">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Madres, padres y tutores</p>
+      <h2>Participación de las familias</h2>
+    </div>
+    <div class="rejilla r2 rev">
+      <article class="tarjeta"><div class="tarjeta__icono">🤲</div><h3>Asociación de Padres de Familia</h3><p>Organiza el tequio, las faenas de mantenimiento, el rol de la cocina escolar y el apoyo a los festivales. Su informe se presenta en asamblea al cierre de cada ciclo.</p></article>
+      <article class="tarjeta tarjeta--guinda"><div class="tarjeta__icono">🏫</div><h3>Comité Escolar de Administración Participativa</h3><p>El CEAP administra y transparenta los recursos del programa La Escuela es Nuestra, acuerda las obras de mejora con la asamblea y rinde cuentas a la comunidad escolar.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--papel" id="contacto">
+  <div class="env">
+    <div class="cabeza rev">
+      <p class="ojo">Cómo encontrarnos</p>
+      <h2>Contacto</h2>
+    </div>
+    <div class="rejilla r2 rev">
+      <div>
+        <dl class="dl">
+          <div><dt>Domicilio</dt><dd data-c="domicilio"></dd></div>
+          <div><dt>Horario de atención</dt><dd data-c="horario"></dd></div>
+          <div><dt>Teléfono</dt><dd><a id="tel-liga" href="#" data-c="telefono"></a></dd></div>
+          <div><dt>Correo</dt><dd><a id="mail-liga" href="#" data-c="correo"></a></dd></div>
+          <div><dt>Supervisión escolar</dt><dd>Zona 027 de primaria general · San Pedro y San Pablo Ayutla Mixe, Oaxaca</dd></div>
+        </dl>
+        <p style="margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.8rem">
+          <a class="boton boton--oro" id="mail-boton" href="#">Escribir a la escuela</a>
+          <a class="boton boton--linea" data-l="mapa" href="#">Abrir en Google Maps</a>
+        </p>
+      </div>
+      <div><iframe class="mapa" id="mapa" title="Ubicación de la escuela" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Escuela+Primaria+Pablo+L.+Sidar,+Santa+Mar%C3%ADa+Tlahuitoltepec,+Oaxaca&output=embed"></iframe></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="env">
+    <div class="rejilla r4">
+      <div>
+        <h4>La escuela</h4>
+        <div class="pie__marca">
+          <img src="archivos/escudo-escuela.png" alt="Escudo de la escuela">
+          <div>
+            <p style="font-family:var(--display);font-size:1.15rem;color:#fff;margin:0 0 .3rem" data-c="nombre"></p>
+            <p style="font-size:.92rem;margin:0">CCT <span data-c="cct"></span> · Zona <span data-c="zona"></span><br>Santa María Tlahuitoltepec Mixe, Oaxaca</p>
+          </div>
+        </div>
+        <div class="sellos">
+          <img src="archivos/sello-90.png" alt="90 aniversario 1936-2026">
+          <img src="archivos/logo-ieepo.jpg" alt="Instituto Estatal de Educación Pública de Oaxaca">
+        </div>
+      </div>
+      <div><h4>Institución</h4><a href="#escuela">Identidad e historia</a><a href="#oferta">Oferta educativa</a><a href="#directorio">Directorio</a><a href="#participacion">Padres de familia</a></div>
+      <div><h4>90 aniversario</h4><a href="#programa">Programa</a><a href="#convocatorias">Convocatorias</a><a href="#galeria">Galería</a><a href="#videos">Videos</a></div>
+      <div><h4>Familias</h4><a href="#avisos">Avisos</a><a href="#tramites">Trámites</a><a href="#documentos">Documentos</a><a href="#contacto">Contacto</a></div>
+    </div>
+    <div class="pie__fin">
+      <span>© <span id="anio"></span> Escuela Primaria General "Pablo L. Sidar" · 1936-2026</span>
+      <span class="contador" id="contador" hidden>Visitas <b id="contador-n">—</b></span>
+      <span>Sitio administrado por la propia escuela</span>
+    </div>
+  </div>
+</footer>
+
+<div class="visor" id="visor" role="dialog" aria-label="Imagen ampliada">
+  <button class="visor__x" id="visor-x" aria-label="Cerrar">×</button>
+  <div><img id="visor-img" src="" alt=""><p id="visor-txt"></p></div>
+</div>
+<button class="arriba" id="arriba" aria-label="Volver arriba">↑</button>
+
+<script>
+/* ####################################################################
+   ####                                                            ####
+   ####     AQUÍ SE CAMBIA TODO EL CONTENIDO DE LA PÁGINA          ####
+   ####     Sólo cambia lo que está entre "comillas".              ####
+   ####     No borres las comillas, las llaves { } ni las comas.   ####
+   ####                                                            ####
+   ####     Para una imagen puedes poner:                          ####
+   ####       "archivos/mi-foto.jpg"   (archivo del sitio)         ####
+   ####       o la liga de Google Drive, tal cual la copies        ####
+   ####                                                            ####
+   #################################################################### */
+
+var CONTENIDO = {
+
+/* ===== 1. DATOS DE LA ESCUELA ===================================== */
+escuela: {
+  nombre: 'Escuela Primaria General "Pablo L. Sidar"',
+  cct: '20DPR1196T',
+  zona: '027',
+  turno: 'Matutino',
+  ciclo: '2026-2027',
+  director: 'Profr. Félix Hernández Cardoso',
+  lema: 'Honrando nuestro pasado, inspirando nuestro presente y construyendo el futuro de las nuevas generaciones.',
+  horario: 'Lunes a viernes, 9:00 a 14:00 h',
+  domicilio: 'Independencia núm. 1, Centro, Santa María Tlahuitoltepec Mixe, Oaxaca',
+  telefono: '283 128 2452',
+  correo: 'primariapablolsidar@gmail.com',
+  bienvenida: 'Bienvenidos a una ventana más del saber. Página oficial de la Escuela Primaria General "Pablo L. Sidar" de Santa María Tlahuitoltepec Mixe, Oaxaca.',
+  mision: 'Brindar educación primaria de calidad a las niñas y los niños de Santa María Tlahuitoltepec Mixe, mediante una formación integral que articula lo académico, lo artístico, lo deportivo y lo comunitario desde la identidad ayuujk.',
+  vision: 'Consolidarnos como institución pionera en formación integral en la región mixe, con resultados de aprendizaje sólidos, vida colegiada fuerte y participación permanente de las familias y la asamblea comunitaria.',
+  valores: ['Respeto','Disciplina','Honestidad','Responsabilidad','Identidad ayuujk','Cuidado de la madre naturaleza']
+},
+
+/* ===== 2. LIGAS ==================================================== */
+ligas: {
+  facebook: 'https://www.facebook.com/profile.php?id=61566184937876',
+  mapa: 'https://maps.app.goo.gl/gbrouzwga6tob4t1A'
+},
+
+/* ===== 3. CONVOCATORIAS Y CARTELES ================================ */
+/*  Para agregar una: copia un bloque completo { ... } y pégalo abajo,
+    separado por coma. El último de la lista va sin coma.             */
+carteles: [
+  { titulo:'Gran torneo de futbol',
+    imagen:'archivos/cartel-futbol.jpg',
+    fecha:'Lunes 5 de octubre de 2026', hora:'8:00 AM', lugar:'Cancha municipal',
+    categoria:'Infantil varonil e infantil femenil', informes:'951 131 4257',
+    nota:'Copa conmemorativa 90 años. Premiación a los tres equipos más destacados.' },
+
+  { titulo:'Gran torneo de básquetbol',
+    imagen:'archivos/cartel-basquetbol.jpg',
+    fecha:'Lunes 5 de octubre de 2026', hora:'8:00 AM', lugar:'Cancha municipal',
+    categoria:'Infantil varonil e infantil femenil', informes:'951 131 4257',
+    nota:'Copa conmemorativa 90 años. Premiación a los tres equipos más destacados.' },
+
+  { titulo:'Expo feria artesanal',
+    imagen:'archivos/cartel-expoferia.jpg',
+    fecha:'Lunes 5 de octubre de 2026', hora:'11:00 AM a 6:00 PM', lugar:'Cancha municipal',
+    categoria:'Artesanas y artesanos de la comunidad', informes:'951 461 6175 · 951 157 8889',
+    nota:'Inscripción antes del 18 de septiembre en la dirección de la escuela.' },
+
+  { titulo:'Gran torneo de ajedrez',
+    imagen:'archivos/cartel-ajedrez.jpg',
+    fecha:'Martes 6 de octubre de 2026', hora:'11:00 AM', lugar:'Kiosko municipal',
+    categoria:'Infantil mixto', informes:'Dirección de la escuela',
+    nota:'Premiación a los tres lugares destacados.' },
+
+  { titulo:'Carrera atlética de relevos',
+    imagen:'archivos/cartel-relevos.jpg',
+    fecha:'Miércoles 7 de octubre de 2026', hora:'6:00 AM', lugar:'Cancha municipal',
+    categoria:'Rama femenil: alumnas de 1°, 2° y 3° y madres de familia', informes:'951 392 7403',
+    nota:'Premiación a los tres primeros lugares de cada grado.' }
+],
+
+/* ===== 4. DOCUMENTOS ============================================== */
+/*  En "url" pon el archivo o la liga de Drive. Si lo dejas vacío,
+    la tarjeta aparece marcada como pendiente.                        */
+documentos: [
+  { titulo:'Calendario escolar 2026-2027', tipo:'PDF', texto:'185 días de clase', url:'archivos/calendario-escolar-2026-2027.pdf' },
+  { titulo:'Programa del 90 aniversario', tipo:'IMG', texto:'Del 3 al 7 de octubre de 2026', url:'archivos/programa-actividades.jpg' },
+  { titulo:'Documentos para inscripción', tipo:'LISTA', texto:'Acta de nacimiento, CURP, boleta anterior, comprobante de domicilio, INE y CURP del tutor', url:'' },
+  { titulo:'Convocatoria de futbol', tipo:'IMG', texto:'Copa conmemorativa 90 años', url:'archivos/cartel-futbol.jpg' },
+  { titulo:'Convocatoria de básquetbol', tipo:'IMG', texto:'Copa conmemorativa 90 años', url:'archivos/cartel-basquetbol.jpg' },
+  { titulo:'Lista de útiles', tipo:'PDF', texto:'Por grado', url:'' },
+  { titulo:'Reglamento escolar', tipo:'PDF', texto:'Acuerdos de convivencia', url:'' },
+  { titulo:'Programa La Escuela es Nuestra', tipo:'PDF', texto:'Informe de recursos', url:'' }
+],
+
+/* ===== 5. AVISOS ================================================== */
+avisos: [
+  { fecha:'2026-09-06', categoria:'Inscripciones', titulo:'Inscripciones abiertas todo el año',
+    texto:'Recibimos alumnas y alumnos durante todo el ciclo escolar. Acércate a la dirección o llama al 283 128 2452.',
+    archivo:'', archivoTexto:'' },
+  { fecha:'2026-09-05', categoria:'90 aniversario', titulo:'Programa de actividades del 3 al 7 de octubre',
+    texto:'Ascenso ritual al cerro sagrado, calenda con tres bandas filarmónicas, torneos, expoferia, Guelaguetza y baile popular.',
+    archivo:'archivos/programa-actividades.jpg', archivoTexto:'Ver programa completo' },
+  { fecha:'2026-09-03', categoria:'Comunidad', titulo:'Expo feria artesanal: registro abierto',
+    texto:'Artesanas y artesanos de la comunidad pueden inscribirse hasta el 18 de septiembre en la dirección de la escuela.',
+    archivo:'archivos/cartel-expoferia.jpg', archivoTexto:'Ver convocatoria' }
+],
+
+/* ===== 6. PROGRAMA DEL ANIVERSARIO ================================ */
+honor: [
+  'Honorable Ayuntamiento Constitucional de Santa María Tlahuitoltepec, Mixe, Oaxaca',
+  'Autoridades agrarias de nuestro municipio',
+  'Autoridades educativas estatales, regionales y locales',
+  'Exdocentes, exalumnos y personalidades destacadas de la institución'
+],
+programa: [
+  { dia:'Sábado', numero:'3', nota:'Apertura', actividades:[
+    { hora:'05:00 AM', texto:'Solemne ascenso ritual al cerro sagrado' },
+    { hora:'06:00 PM', texto:'Cena ceremonial de apertura' } ] },
+  { dia:'Domingo', numero:'4', nota:'Recepción y calenda', actividades:[
+    { hora:'03:00 PM', texto:'Recepción oficial de delegaciones e instituciones participantes' },
+    { hora:'07:00 PM', texto:'Magna calenda conmemorativa con tres bandas filarmónicas, del Calvario al centro' } ] },
+  { dia:'Lunes', numero:'5', nota:'Inauguración', actividades:[
+    { hora:'09:00 AM', texto:'Inauguración oficial, develación de la placa conmemorativa e inicio del programa sociocultural' },
+    { hora:'11:00 AM', texto:'Exposición fotográfica, expo feria artesanal y partidos de básquetbol' },
+    { hora:'12:00 PM', texto:'Función de Carapacho' },
+    { hora:'02:00 PM', texto:'Comida' },
+    { hora:'03:00 PM', texto:'Continuación de básquetbol y premiación' },
+    { hora:'08:00 PM', texto:'Cena' },
+    { hora:'09:00 PM', texto:'Chiquidisco' } ] },
+  { dia:'Martes', numero:'6', nota:'Cultura y deporte', actividades:[
+    { hora:'08:00 AM', texto:'Partidos de futbol' },
+    { hora:'10:00 AM', texto:'Exposición de material bibliográfico y del archivo fotográfico histórico. Payasos de la ciencia' },
+    { hora:'11:00 AM', texto:'Gran torneo de ajedrez en el kiosko municipal' },
+    { hora:'12:00 PM', texto:'Mesa redonda' },
+    { hora:'02:00 PM', texto:'Comida' },
+    { hora:'03:00 PM', texto:'Partidos de futbol, premiación y cuenta cuentos' },
+    { hora:'05:00 PM', texto:'Magna presentación folklórica de la Guelaguetza' },
+    { hora:'07:00 PM', texto:'Convivencia atlética de padres e hijos, con antorchas' },
+    { hora:'08:00 PM', texto:'Cena' } ] },
+  { dia:'Miércoles', numero:'7', nota:'Clausura', actividades:[
+    { hora:'06:00 AM', texto:'Carrera atlética de relevos, rama femenil' },
+    { hora:'08:00 AM', texto:'Presentación del libro' },
+    { hora:'11:00 AM', texto:'Solemne misa' },
+    { hora:'01:00 PM', texto:'Ofrecimiento de tepache y tamales' },
+    { hora:'02:00 PM', texto:'Comida' },
+    { hora:'04:00 PM', texto:'Baile tradicional' },
+    { hora:'06:00 PM', texto:'Entrega de reconocimientos a colaboradores, patrocinadores e instituciones' },
+    { hora:'08:00 PM', texto:'Cena' },
+    { hora:'09:00 PM', texto:'Baile popular' } ] }
+],
+
+/* ===== 7. GALERÍA DE FOTOS ======================================== */
+/*  Para agregar una foto de Drive: copia un bloque, cambia el título
+    y pega la liga de Drive en "imagen".                              */
+galeria: [
+  { titulo:'Honores a la bandera', categoria:'Actos cívicos', pie:'Ceremonia semanal en la cancha techada.', imagen:'archivos/honores-bandera.jpg' },
+  { titulo:'Escolta de bandera', categoria:'Actos cívicos', pie:'Nuestra escolta con el traje tradicional de Tlahuitoltepec.', imagen:'archivos/escolta-bandera.jpg' },
+  { titulo:'Fiestas patrias', categoria:'Actos cívicos', pie:'Las niñas y los niños durante el festejo de septiembre.', imagen:'archivos/fiestas-patrias.jpg' },
+  { titulo:'Colectivo escolar', categoria:'Comunidad', pie:'Personal docente y alumnado del plantel.', imagen:'archivos/colectivo-escolar.jpg' },
+  { titulo:'Toda la escuela reunida', categoria:'Comunidad', pie:'Los 20 grupos y el personal en la cancha municipal.', imagen:'archivos/comunidad-escolar.jpg' },
+  { titulo:'Asamblea escolar', categoria:'Comunidad', pie:'Reunión general del alumnado.', imagen:'archivos/asamblea-gradas.jpg' },
+  { titulo:'Convivencia escolar', categoria:'Comunidad', pie:'Festejo con las familias en la cancha techada.', imagen:'archivos/convivencia-escolar.jpg' },
+  { titulo:'Lectura en el pasillo', categoria:'Aula', pie:'Lectura en voz alta con el grupo.', imagen:'archivos/lectura-pasillo.jpg' },
+  { titulo:'Ciencia en el aula', categoria:'Aula', pie:'Observación con microscopio en el proyecto del agua.', imagen:'archivos/microscopio.jpg' },
+  { titulo:'Sala de usos múltiples', categoria:'Aula', pie:'Proyección educativa para los primeros grados.', imagen:'archivos/sala-usos-multiples.jpg' },
+  { titulo:'Taller en la biblioteca', categoria:'Talleres', pie:'Trabajo de ilustración en la biblioteca escolar.', imagen:'archivos/taller-biblioteca.jpg' },
+  { titulo:'Pintura y grabado', categoria:'Talleres', pie:'Creación de estampas en el taller de artes.', imagen:'archivos/pintura-biblioteca.jpg' },
+  { titulo:'Ajedrez en el patio', categoria:'Talleres', pie:'Partida en el tablero gigante.', imagen:'archivos/ajedrez-gigante.jpg' },
+  { titulo:'Torneo de ajedrez', categoria:'Talleres', pie:'Encuentro entre grupos.', imagen:'archivos/ajedrez-patio.jpg' },
+  { titulo:'Danza folklórica', categoria:'Talleres', pie:'Nuestro grupo de danza con sus reconocimientos.', imagen:'archivos/danza-premiacion.jpg' },
+  { titulo:'Básquetbol femenil', categoria:'Deporte', pie:'Selección de la escuela en el torneo de la comunidad.', imagen:'archivos/basquetbol-femenil.jpg' },
+  { titulo:'Cocina escolar', categoria:'Cocina escolar', pie:'Madres de familia preparando el desayuno.', imagen:'archivos/cocina-escolar.jpg' }
+],
+
+/* ===== 8. VIDEOS ================================================== */
+/*  En "youtube" va sólo el código que aparece después de v=          */
+videos: [
+  { titulo:'Recorrido por la escuela', youtube:'aqz-KE-bpKQ', texto:'Video provisional. Se cambia cuando la escuela suba el suyo.' },
+  { titulo:'90 aniversario', youtube:'aqz-KE-bpKQ', texto:'Video provisional.' }
+],
+
+/* ===== 9. CIFRAS ================================================== */
+cifras: [
+  { n:438, t:'Alumnas y alumnos' },
+  { n:20,  t:'Grupos' },
+  { n:22,  t:'Personal docente' },
+  { n:3,   t:'Asistentes de servicio' },
+  { n:6,   t:'Grados' },
+  { n:90,  t:'Años de servicio' }
+],
+
+/* ===== 10. HISTORIA =============================================== */
+historia: [
+  { anio:'1936', titulo:'Autorización federal', texto:'La escuela recibe su autorización como plantel federal y abre sus puertas a las primeras generaciones de Xaamkëjxp.' },
+  { anio:'1950-1980', titulo:'Crecimiento del plantel', texto:'Con el tequio de las familias se levantan las primeras aulas de material y la escuela alcanza la organización completa de seis grados.' },
+  { anio:'Escuela pionera', titulo:'Más allá del aula', texto:'Fue la primera de la región en abrir espacios formativos fuera del salón: danza folklórica, música, lengua materna, radio escolar, ajedrez y parcela escolar.' },
+  { anio:'2021', titulo:'Ochenta y cinco años', texto:'El mural de la cancha techada, con el emblema de las manos y el libro, recuerda los 85 años de servicio a la comunidad.' },
+  { anio:'2026', titulo:'Noventa aniversario', texto:'La escuela conmemora noventa años con actividades del 3 al 7 de octubre, con 438 alumnas y alumnos en 20 grupos.' }
+],
+
+/* ===== 11. PABLO L. SIDAR ========================================= */
+sidar: {
+  titulo: 'Pablo L. Sidar, el aviador que da nombre a la escuela',
+  parrafos: [
+    'Coronel piloto aviador de la Fuerza Aérea Mexicana, fue una de las figuras más admiradas de la aviación nacional. Sus documentos oficiales lo registran como nacido en Ramos Arizpe, Coahuila, en 1898, aunque el historiador Manuel Ruiz Romero sostiene que nació en Zaragoza, España, y llegó a México siendo niño. Ingresó al ejército en 1914 y a la Escuela Militar de Aviación en 1920.',
+    'En agosto de 1929 emprendió un vuelo de buena voluntad por Centroamérica, Sudamérica y el Caribe. Visitó más de quince países, acumuló 265 horas de vuelo y recorrió 22,500 kilómetros en poco más de dos meses. Regresó a la Ciudad de México el 11 de noviembre de 1929 y fue recibido como héroe nacional.',
+    'Su última hazaña lo unió a Oaxaca. Para intentar el vuelo sin escalas de México a Buenos Aires se eligió el campo aéreo de Cerro Prieto, en nuestro estado, por contar con la pista necesaria para despegar a plena carga. Desde San Jerónimo, Oaxaca, escribió sus últimas cartas. Despegó la madrugada del 11 de mayo de 1930 junto al teniente Carlos Rovirosa y murió ese mismo día frente a Puerto Limón, Costa Rica, alcanzado por una tormenta.',
+    'Recibió el grado de general de manera póstuma y sus restos descansan en la Rotonda de las Personas Ilustres. Su nombre, ligado a Oaxaca por ese último despegue, lo lleva nuestra escuela desde su fundación.'
+  ],
+  fuente: 'Fuente: Eugenia Ogarrio Elías Calles, "El aviador y la doncella", Boletín 75 del Fideicomiso Archivos Plutarco Elías Calles y Fernando Torreblanca, 2014.'
+},
+
+/* ===== 12. INFRAESTRUCTURA ======================================== */
+infraestructura: [
+  { icono:'📚', titulo:'Aulas', texto:'Veinte aulas, una por cada grupo.' },
+  { icono:'📖', titulo:'Biblioteca escolar', texto:'Acervo para consulta y préstamo a domicilio.' },
+  { icono:'📕', titulo:'Biblioteca ayuujk', texto:'Materiales en lengua materna.' },
+  { icono:'⚽', titulo:'Cancha y patio', texto:'Educación física, torneos y actos cívicos.' },
+  { icono:'🌱', titulo:'Parcela escolar', texto:'Siembra y cuidado del territorio.' },
+  { icono:'🎙️', titulo:'Radio escolar', texto:'Cabina para las producciones de los grupos.' },
+  { icono:'💻', titulo:'Centro de cómputo', texto:'Equipo para proyectos escolares.' },
+  { icono:'🍲', titulo:'Cocina y comedor', texto:'Desayuno escolar preparado por las familias.' }
+],
+
+/* ===== 13. OFERTA EDUCATIVA ======================================= */
+campos: [
+  { titulo:'Lenguajes', texto:'Español, lengua ayuujk, inglés y artes.' },
+  { titulo:'Saberes y pensamiento científico', texto:'Matemáticas y ciencias naturales.' },
+  { titulo:'Ética, naturaleza y sociedades', texto:'Historia, geografía y formación cívica y ética.' },
+  { titulo:'De lo humano y lo comunitario', texto:'Educación física, socioemocional y vida saludable.' }
+],
+grados: [
+  { titulo:'Primer grado', grupos:'3 grupos', texto:'Alfabetización inicial y adaptación a la vida escolar.' },
+  { titulo:'Segundo grado', grupos:'3 grupos', texto:'Consolidación de la lectura y operaciones básicas.' },
+  { titulo:'Tercer grado', grupos:'4 grupos', texto:'Comprensión lectora y estudio del entorno.' },
+  { titulo:'Cuarto grado', grupos:'4 grupos', texto:'Escritura de textos propios y ciencias naturales.' },
+  { titulo:'Quinto grado', grupos:'3 grupos', texto:'Proyectos de indagación y participación cívica.' },
+  { titulo:'Sexto grado', grupos:'3 grupos', texto:'Preparación para secundaria y proyecto comunitario.' }
+],
+talleres: [
+  { icono:'💃', titulo:'Danza folklórica', texto:'Bailes tradicionales para festivales y actos cívicos.' },
+  { icono:'🎺', titulo:'Música', texto:'Iniciación musical y participación en las fiestas.' },
+  { icono:'🗣️', titulo:'Lengua materna', texto:'Fortalecimiento del ayuujk dentro y fuera del aula.' },
+  { icono:'🎙️', titulo:'Radio escolar', texto:'Cápsulas y programas hechos por las niñas y los niños.' },
+  { icono:'♟️', titulo:'Ajedrez', texto:'Estrategia, concentración y torneos entre grupos.' },
+  { icono:'🌾', titulo:'Parcela escolar', texto:'Siembra, cuidado del agua y separación de residuos.' }
+],
+servicios: [
+  { icono:'📗', titulo:'Biblioteca escolar', texto:'Círculos de lectura y préstamo a domicilio.' },
+  { icono:'📕', titulo:'Biblioteca ayuujk', texto:'Acervo de la cultura mixe.' },
+  { icono:'🍲', titulo:'Cocina y comedor', texto:'Desayuno organizado por las familias.' },
+  { icono:'💻', titulo:'Centro de cómputo', texto:'Uso guiado para proyectos escolares.' },
+  { icono:'🏛️', titulo:'Sala de usos múltiples', texto:'Reuniones y actividades culturales.' },
+  { icono:'🛝', titulo:'Área de juegos', texto:'Espacio recreativo construido con apoyo del CAPFCE.' }
+],
+
+/* ===== 14. DIRECTORIO ============================================= */
+/*  Puedes poner una foto en "foto", con archivo o liga de Drive.     */
+directorio: [
+  { nombre:'Profr. Félix Hernández Cardoso', cargo:'Director de la escuela', foto:'' },
+  { nombre:'Por definir', cargo:'Docentes de primer grado · 3 grupos', foto:'' },
+  { nombre:'Por definir', cargo:'Docentes de segundo grado · 3 grupos', foto:'' },
+  { nombre:'Por definir', cargo:'Docentes de tercer grado · 4 grupos', foto:'' },
+  { nombre:'Por definir', cargo:'Docentes de cuarto grado · 4 grupos', foto:'' },
+  { nombre:'Por definir', cargo:'Docentes de quinto grado · 3 grupos', foto:'' },
+  { nombre:'Por definir', cargo:'Docentes de sexto grado · 3 grupos', foto:'' },
+  { nombre:'Por definir', cargo:'Asistentes de servicio · 3 personas', foto:'' }
+],
+
+/* ===== 15. TRÁMITES =============================================== */
+tramites: [
+  { titulo:'Inscripción', texto:'Inscribimos durante todo el año escolar.', pasos:[
+    'Acércate a la dirección de la escuela o llama al 283 128 2452.',
+    'Presenta acta de nacimiento, CURP, boleta del grado anterior, comprobante de domicilio, INE y CURP del tutor.',
+    'Recibe tu comprobante y el grupo asignado.' ] },
+  { titulo:'Preinscripción', texto:'Aparta el lugar para el siguiente ciclo escolar.', pasos:[
+    'Revisa las fechas en el calendario escolar.',
+    'Acude a la dirección a llenar la solicitud.',
+    'Conserva tu comprobante hasta la inscripción definitiva.' ] },
+  { titulo:'Constancia de estudios', texto:'La solicita la madre, el padre o el tutor.', pasos:[
+    'Acude a la dirección con el nombre completo y la CURP del alumno.',
+    'Indica para qué institución se requiere.',
+    'Recibe la constancia firmada y sellada, sin costo.' ] },
+  { titulo:'Traslado a otra escuela', texto:'La solicita la madre, el padre o el tutor.', pasos:[
+    'Presenta una solicitud exponiendo los motivos.',
+    'Incluye el nombre completo y la CURP del alumno.',
+    'Recibe la documentación de traslado y el reporte de evaluación.' ] },
+  { titulo:'Justificación de inasistencias', texto:'Por enfermedad, viaje familiar o trámite fuera de la comunidad.', pasos:[
+    'Reporta con el maestro o la maestra del grupo.',
+    'Entrega el justificante por escrito.',
+    'La escuela registra la falta como justificada.' ] }
+],
+
+/* ===== 16. CONTADOR DE VISITAS ==================================== */
+contador: { activo:true, espacio:'pablolsidar', llave:'sitio' }
+
+};
+
+/* ####################################################################
+   ####  DE AQUÍ PARA ABAJO ES EL FUNCIONAMIENTO DEL SITIO.        ####
+   ####  No hace falta que lo toques nunca.                        ####
+   #################################################################### */
+
+var C=CONTENIDO;
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var esc=function(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
+var MESL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function fLarga(iso){var p=String(iso||'').split('-');return p.length<3?'':Number(p[2])+' de '+MESL[+p[1]-1]+' de '+p[0]}
+function urlDrive(u){
+  u=String(u||''); if(!u) return '';
+  var m=u.match(/[-\w]{25,}/);
+  if(u.indexOf('drive.google.com')>-1 && m) return 'https://drive.google.com/thumbnail?id='+m[0]+'&sz=w1600';
+  return u;
+}
+function avatar(i){
+  var pal=[['#6E1A2A','#DFAE45'],['#2F8F5B','#F7E9C8'],['#1E5C3C','#DFAE45'],['#9C3346','#F7E9C8'],['#B8860B','#FFFFFF'],['#4A1420','#DFAE45'],['#276B47','#F7E9C8'],['#7E2233','#DFAE45']][i%8];
+  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="'+pal[0]+'"/>'
+   +'<circle cx="50" cy="41" r="16" fill="'+pal[1]+'"/><path d="M18 96c0-18 14-29 32-29s32 11 32 29z" fill="'+pal[1]+'"/></svg>';
+  return 'data:image/svg+xml,'+encodeURIComponent(s);
+}
+
+function pintar(){
+  var e=C.escuela||{};
+  $$('[data-c]').forEach(function(el){var v=e[el.getAttribute('data-c')];if(v) el.textContent=v});
+  if(e.valores) $('#valores').textContent=[].concat(e.valores).join(' · ');
+  $('#anio').textContent=new Date().getFullYear();
+  $$('[data-l]').forEach(function(el){var u=(C.ligas||{})[el.getAttribute('data-l')];if(u) el.href=u});
+  if(e.telefono) $('#tel-liga').href='tel:+52'+String(e.telefono).replace(/\D/g,'');
+  if(e.correo){ $('#mail-liga').href='mailto:'+e.correo; $('#mail-boton').href='mailto:'+e.correo; }
+
+  var lema=(e.lema||'')+' · '+(e.nombre||'')+' · CCT '+(e.cct||'')+' · 1936-2026';
+  var t='<span>'+esc(lema)+' <i>◆</i></span>';
+  $('#franja').innerHTML=t+t+t;
+
+  $('#lista-carteles').innerHTML=(C.carteles||[]).map(function(c){
+    var img=urlDrive(c.imagen);
+    return '<article class="cartel"><div class="cartel__img" data-img="'+esc(img)+'" data-pie="'+esc(c.titulo)+'">'
+      +'<img src="'+esc(img)+'" alt="'+esc(c.titulo)+'" loading="lazy"></div>'
+      +'<div class="cartel__cuerpo"><h3>'+esc(c.titulo)+'</h3><ul class="cartel__datos">'
+      +(c.fecha?'<li><b>Fecha</b>'+esc(c.fecha)+'</li>':'')
+      +(c.hora?'<li><b>Hora</b>'+esc(c.hora)+'</li>':'')
+      +(c.lugar?'<li><b>Lugar</b>'+esc(c.lugar)+'</li>':'')
+      +(c.categoria?'<li><b>Categoría</b>'+esc(c.categoria)+'</li>':'')
+      +(c.informes?'<li><b>Informes</b>'+esc(c.informes)+'</li>':'')
+      +'</ul>'+(c.nota?'<p class="pie-nota" style="margin:.4rem 0 0">'+esc(c.nota)+'</p>':'')+'</div></article>';
+  }).join('');
+
+  $('#lista-documentos').innerHTML=(C.documentos||[]).map(function(d){
+    var u=d.url?urlDoc(d.url):'';
+    return '<a class="doc" href="'+esc(u||'#')+'"><span class="doc__ic">'+esc(d.tipo||'DOC')+'</span>'
+      +'<span><b>'+esc(d.titulo)+'</b><small>'+esc(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
+  }).join('');
+
+  $('#lista-avisos').innerHTML=(C.avisos||[]).map(function(a){
+    return '<article class="aviso"><span class="eti">'+esc(a.categoria)+'</span><h3>'+esc(a.titulo)+'</h3>'
+      +'<span class="aviso__fecha">'+fLarga(a.fecha)+'</span><p>'+esc(a.texto)+'</p>'
+      +(a.archivo?'<a class="enlace" href="'+esc(urlDoc(a.archivo))+'">'+esc(a.archivoTexto||'Abrir')+' →</a>':'')+'</article>';
+  }).join('') || '<p class="pie-nota">Todavía no hay avisos publicados.</p>';
+
+  var dias=C.programa||[];
+  $('#dias-tabs').innerHTML=dias.map(function(d,i){
+    return '<button class="pestana" role="tab" aria-selected="'+(i===0)+'" data-dia="d'+i+'">'+esc(d.dia)+' '+esc(d.numero)+'</button>';
+  }).join('');
+  $('#dias-paneles').innerHTML=dias.map(function(d,i){
+    return '<div class="panel" id="d'+i+'" role="tabpanel"'+(i?' hidden':'')+'>'
+      +'<div class="dia-cab"><h3>'+esc(d.dia)+' '+esc(d.numero)+' de octubre</h3><small>'+esc(d.nota||'')+' · 2026</small></div>'
+      +'<ul class="horas">'+(d.actividades||[]).map(function(a){
+        return '<li><b>'+esc(a.hora)+'</b><span>'+esc(a.texto)+'</span></li>';}).join('')+'</ul></div>';
+  }).join('');
+  conectarDias();
+  $('#honor').innerHTML=(C.honor||[]).map(function(h){return '<li>'+esc(h)+'</li>'}).join('');
+
+  $('#historia').innerHTML=(C.historia||[]).map(function(h){
+    return '<article class="tarjeta"><p class="ojo">'+esc(h.anio)+'</p><h3>'+esc(h.titulo)+'</h3><p>'+esc(h.texto)+'</p></article>';
+  }).join('');
+  var s=C.sidar||{};
+  $('#sidar-titulo').textContent=s.titulo||'';
+  $('#sidar-texto').innerHTML=(s.parrafos||[]).map(function(t){return '<p style="color:var(--t70)">'+esc(t)+'</p>'}).join('');
+  $('#sidar-fuente').textContent=s.fuente||'';
+
+  $('#infraestructura').innerHTML=(C.infraestructura||[]).map(function(x){
+    return '<article class="tarjeta"><div class="tarjeta__icono">'+esc(x.icono)+'</div><h3>'+esc(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+  }).join('');
+  $('#campos').innerHTML=(C.campos||[]).map(function(x,i){
+    return '<article class="tarjeta'+(i%2?' tarjeta--guinda':'')+'"><p class="ojo">Campo '+(i+1)+'</p><h3>'+esc(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+  }).join('');
+  $('#grados').innerHTML=(C.grados||[]).map(function(x,i){
+    return '<article class="tarjeta"><p class="ojo">Grado '+(i+1)+'</p><h3>'+esc(x.titulo)+'</h3>'
+      +(x.grupos?'<span class="chip">'+esc(x.grupos)+'</span>':'')
+      +'<p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+  }).join('');
+  ['talleres','servicios'].forEach(function(k){
+    $('#'+k).innerHTML=(C[k]||[]).map(function(x,i){
+      return '<article class="tarjeta'+(i%2?' tarjeta--guinda':'')+'"><div class="tarjeta__icono">'+esc(x.icono)+'</div><h3>'+esc(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+    }).join('');
+  });
+
+  $('#cifras').innerHTML=(C.cifras||[]).map(function(c){
+    return '<div class="cifra"><div class="cifra__n" data-hasta="'+(c.n||0)+'">0</div><div class="cifra__t">'+esc(c.t)+'</div></div>';
+  }).join('');
+
+  var cats=['todas'].concat((C.galeria||[]).map(function(g){return g.categoria}).filter(function(v,i,a){return v&&a.indexOf(v)===i}));
+  $('#filtros').innerHTML=cats.map(function(c,i){
+    return '<button class="filtro" aria-pressed="'+(i===0)+'" data-cat="'+esc(c)+'">'+esc(c==='todas'?'Todas':c)+'</button>';
+  }).join('');
+  pintarGaleria('todas');
+
+  $('#lista-videos').innerHTML=(C.videos||[]).map(function(v){
+    return '<div><div class="video" data-video="'+esc(v.youtube)+'">'
+      +'<button class="video__tapa" style="background-image:url(https://i.ytimg.com/vi/'+esc(v.youtube)+'/hqdefault.jpg)"><span class="video__play">▶</span><b>'+esc(v.titulo)+'</b></button>'
+      +'</div><p class="pie-nota" style="margin-top:.7rem">'+esc(v.texto||'')+'</p></div>';
+  }).join('');
+
+  $('#lista-directorio').innerHTML=(C.directorio||[]).map(function(p,i){
+    return '<article class="persona"><img src="'+esc(p.foto?urlDrive(p.foto):avatar(i))+'" alt="'+esc(p.nombre)+'" loading="lazy">'
+      +'<b>'+esc(p.nombre)+'</b><small>'+esc(p.cargo)+'</small></article>';
+  }).join('');
+
+  $('#lista-tramites').innerHTML=(C.tramites||[]).map(function(t,i){
+    return '<details class="acordeon"'+(i===0?' open':'')+'><summary>'+esc(t.titulo)+'</summary><div class="acordeon__cuerpo">'
+      +'<p style="color:var(--t70)">'+esc(t.texto)+'</p><ol class="pasos">'
+      +(t.pasos||[]).map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ol></div></details>';
+  }).join('');
+
+  revelar(); contar(); conectarVideos(); pestanaNueva();
+}
+
+/** Para documentos: una liga de Drive se abre tal cual; un archivo del sitio también. */
+function urlDoc(u){ return String(u||''); }
+
+function pintarGaleria(cat){
+  var lista=(C.galeria||[]).filter(function(g){return cat==='todas'||g.categoria===cat});
+  $('#rejilla-galeria').innerHTML=lista.map(function(g,i){
+    var src=urlDrive(g.imagen);
+    return '<figure class="foto" style="animation-delay:'+(i*45)+'ms" data-img="'+esc(src)+'" data-pie="'+esc(g.titulo+' · '+(g.pie||''))+'">'
+      +'<img src="'+esc(src)+'" alt="'+esc(g.titulo)+'" loading="lazy">'
+      +'<figcaption><b>'+esc(g.titulo)+'</b><small>'+esc(g.pie||'')+'</small></figcaption></figure>';
+  }).join('');
+}
+
+function pestanaNueva(){
+  $$('a[href]').forEach(function(a){
+    var h=a.getAttribute('href')||'';
+    if(h.charAt(0)==='#'||h==='') return;
+    a.target='_blank'; a.rel='noopener noreferrer';
+  });
+}
+
+$$('[data-menu]').forEach(function(li){
+  var b=$('.nav__b',li);
+  var abrir=function(v){
+    $$('[data-menu]').forEach(function(o){if(o!==li){o.setAttribute('data-abierto','false');$('.nav__b',o).setAttribute('aria-expanded','false')}});
+    li.setAttribute('data-abierto',String(v)); b.setAttribute('aria-expanded',String(v));
+  };
+  b.addEventListener('click',function(ev){ev.preventDefault();abrir(li.getAttribute('data-abierto')!=='true')});
+  if(window.matchMedia('(min-width:1061px)').matches){
+    li.addEventListener('mouseenter',function(){abrir(true)});
+    li.addEventListener('mouseleave',function(){abrir(false)});
+  }
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('[data-menu]')) $$('[data-menu]').forEach(function(o){o.setAttribute('data-abierto','false')});
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){cerrarVisor();$$('[data-menu]').forEach(function(o){o.setAttribute('data-abierto','false')})} });
+$('#menu-btn').addEventListener('click',function(){
+  var n=$('#nav'),a=n.getAttribute('data-abierto')==='true';
+  n.setAttribute('data-abierto',String(!a));this.setAttribute('aria-expanded',String(!a));this.textContent=a?'☰ Menú':'✕ Cerrar';
+});
+$$('.desplegable a, .nav > li > a').forEach(function(a){
+  a.addEventListener('click',function(){
+    $('#nav').setAttribute('data-abierto','false');$('#menu-btn').textContent='☰ Menú';
+    $$('[data-menu]').forEach(function(o){o.setAttribute('data-abierto','false')});
+  });
+});
+
+$$('[data-pestanas]').forEach(function(grupo){
+  var botones=$$('.pestana',grupo);
+  botones.forEach(function(b,i){
+    b.addEventListener('click',function(){
+      botones.forEach(function(o){o.setAttribute('aria-selected','false');$('#'+o.getAttribute('data-panel'),grupo).hidden=true});
+      b.setAttribute('aria-selected','true'); $('#'+b.getAttribute('data-panel'),grupo).hidden=false;
+    });
+    b.addEventListener('keydown',function(ev){
+      var j=ev.key==='ArrowRight'?i+1:ev.key==='ArrowLeft'?i-1:-1;
+      if(j>=0&&j<botones.length){botones[j].focus();botones[j].click()}
+    });
+  });
+});
+function conectarDias(){
+  var botones=$$('#dias-tabs .pestana');
+  botones.forEach(function(b,i){
+    b.addEventListener('click',function(){
+      botones.forEach(function(o){o.setAttribute('aria-selected','false');$('#'+o.getAttribute('data-dia')).hidden=true});
+      b.setAttribute('aria-selected','true'); $('#'+b.getAttribute('data-dia')).hidden=false;
+    });
+    b.addEventListener('keydown',function(ev){
+      var j=ev.key==='ArrowRight'?i+1:ev.key==='ArrowLeft'?i-1:-1;
+      if(j>=0&&j<botones.length){botones[j].focus();botones[j].click()}
+    });
+  });
+}
+
+document.addEventListener('click',function(e){
+  var f=e.target.closest('.filtro');
+  if(f){ $$('.filtro').forEach(function(o){o.setAttribute('aria-pressed','false')}); f.setAttribute('aria-pressed','true'); pintarGaleria(f.getAttribute('data-cat')); return; }
+  var z=e.target.closest('[data-img]');
+  if(z){ $('#visor-img').src=z.getAttribute('data-img'); $('#visor-txt').textContent=z.getAttribute('data-pie')||''; $('#visor').setAttribute('data-abierto','true'); }
+});
+function cerrarVisor(){$('#visor').setAttribute('data-abierto','false');$('#visor-img').src=''}
+$('#visor-x').addEventListener('click',cerrarVisor);
+$('#visor').addEventListener('click',function(e){if(e.target===this)cerrarVisor()});
+
+function conectarVideos(){
+  $$('.video').forEach(function(v){
+    var b=$('.video__tapa',v); if(!b) return;
+    b.onclick=function(){
+      v.innerHTML='<iframe src="https://www.youtube.com/embed/'+v.getAttribute('data-video')+'?autoplay=1&rel=0" title="Video de la escuela" allow="accelerometer;autoplay;clipboard-write;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+    };
+  });
+}
+
+var quieto=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revelar(){
+  if(quieto||!('IntersectionObserver' in window)){$$('.rev').forEach(function(el){el.setAttribute('data-visible','true')});return}
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.setAttribute('data-visible','true');o.unobserve(e.target)}})},{threshold:.1});
+  $$('.rev').forEach(function(el){o.observe(el)});
+}
+function contar(){
+  var els=$$('[data-hasta]');
+  if(quieto||!('IntersectionObserver' in window)){els.forEach(function(el){el.textContent=el.getAttribute('data-hasta')});return}
+  var o=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return; var el=e.target; o.unobserve(el);
+      var fin=+el.getAttribute('data-hasta')||0,ini=null;
+      requestAnimationFrame(function paso(t){
+        if(!ini)ini=t; var p=Math.min((t-ini)/1100,1);
+        el.textContent=Math.round(fin*(1-Math.pow(1-p,3)));
+        if(p<1)requestAnimationFrame(paso);
+      });
+    });
+  },{threshold:.4});
+  els.forEach(function(el){o.observe(el)});
+}
+
+window.addEventListener('scroll',function(){
+  var y=window.scrollY;
+  $('#barra').setAttribute('data-fija',String(y>10));
+  $('#arriba').setAttribute('data-visible',String(y>600));
+},{passive:true});
+$('#arriba').addEventListener('click',function(){window.scrollTo({top:0,behavior:quieto?'auto':'smooth'})});
+
+if('IntersectionObserver' in window){
+  var esp=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var a=$('.nav a[href="#'+e.target.id+'"]');
+      if(a&&a.classList.contains('nav__b')) a.setAttribute('aria-current',e.isIntersecting?'true':'false');
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  $$('main section[id]').forEach(function(s){esp.observe(s)});
+}
+
+function contadorVisitas(){
+  var cfg=C.contador||{}; if(cfg.activo===false) return;
+  fetch('https://api.counterapi.dev/v1/'+(cfg.espacio||'pablolsidar')+'/'+(cfg.llave||'sitio')+'/up')
+    .then(function(r){return r.json()})
+    .then(function(d){
+      var n=(d&&(d.count!=null?d.count:d.value)); if(n==null) return;
+      $('#contador-n').textContent=Number(n).toLocaleString('es-MX');
+      $('#contador').hidden=false;
+    }).catch(function(){});
+}
+
+pintar();
+contadorVisitas();
+</script>
+</body>
+</html>
