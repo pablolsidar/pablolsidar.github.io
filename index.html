@@ -646,6 +646,17 @@ p{margin:0 0 1rem}
 
 var CONTENIDO = {
 
+/* ===== 0. HOJA DE CÁLCULO ==========================================
+   Pega entre las comillas la dirección de tu Panel de contenido en
+   Google Sheets, tal como aparece en la barra del navegador.
+   La hoja debe estar compartida como "Cualquier persona con el
+   enlace", en modo Lector.
+
+   Mientras esté vacía, el sitio usa lo que trae este archivo.
+   Cuando la pegues, la hoja manda sobre avisos, carteles,
+   documentos, galería y videos.                                      */
+hoja: '',
+
 /* ===== 1. DATOS DE LA ESCUELA ===================================== */
 escuela: {
   nombre: 'Escuela Primaria General "Pablo L. Sidar"',
@@ -1199,7 +1210,73 @@ function contadorVisitas(){
     }).catch(function(){});
 }
 
-pintar();
+/* ============ LECTURA DE LA HOJA DE CÁLCULO PUBLICADA ============ */
+function partirCSV(t){
+  var filas=[],f=[],v='',dentro=false;
+  for(var i=0;i<t.length;i++){
+    var c=t[i];
+    if(dentro){
+      if(c==='"'){ if(t[i+1]==='"'){v+='"';i++} else dentro=false } else v+=c;
+    }else if(c==='"'){ dentro=true }
+    else if(c===','){ f.push(v); v='' }
+    else if(c==='\n'){ f.push(v); filas.push(f); f=[]; v='' }
+    else if(c!=='\r'){ v+=c }
+  }
+  if(v!==''||f.length){ f.push(v); filas.push(f) }
+  return filas;
+}
+function aObjetos(filas){
+  if(!filas.length) return [];
+  var cab=filas[0].map(function(c){return c.trim().toUpperCase()});
+  return filas.slice(1).map(function(f){
+    var o={}; cab.forEach(function(c,i){o[c]=(f[i]||'').trim()}); return o;
+  }).filter(function(o){
+    return String(o.PUBLICAR||'').toUpperCase()!=='NO' && Object.keys(o).some(function(k){return o[k]});
+  });
+}
+function idYouTube(u){
+  u=String(u||'').trim();
+  var m=u.match(/[?&]v=([\w-]{6,})/)||u.match(/youtu\.be\/([\w-]{6,})/)||u.match(/embed\/([\w-]{6,})/);
+  return m?m[1]:u;
+}
+function urlHoja(base,pestana){
+  var m=String(base).match(/\/d\/([-\w]{25,})/) || String(base).match(/^([-\w]{25,})$/);
+  if(!m) return '';
+  return 'https://docs.google.com/spreadsheets/d/'+m[1]
+       +'/gviz/tq?tqx=out:csv&sheet='+encodeURIComponent(pestana)+'&t='+Date.now();
+}
+function traerPestana(base,nombre){
+  var u=urlHoja(base,nombre);
+  if(!u) return Promise.resolve(null);
+  return fetch(u)
+    .then(function(r){ if(!r.ok) throw 0; return r.text() })
+    .then(function(t){ return aObjetos(partirCSV(t)) })
+    .catch(function(){ return null });
+}
+function cargarHoja(){
+  var base=(C.hoja||'').trim();
+  if(!base){ pintar(); return; }
+  Promise.all(['AVISOS','CARTELES','DOCUMENTOS','GALERIA','VIDEOS'].map(function(n){return traerPestana(base,n)}))
+  .then(function(r){
+    var av=r[0],ca=r[1],doc=r[2],ga=r[3],vi=r[4];
+    if(av&&av.length) C.avisos=av.map(function(o){return {
+      fecha:o.FECHA, categoria:o.CATEGORIA, titulo:o.TITULO, texto:o.TEXTO,
+      archivo:o.ARCHIVO, archivoTexto:o['TEXTO DEL BOTON']||'Abrir documento' }});
+    if(ca&&ca.length) C.carteles=ca.map(function(o){return {
+      titulo:o.TITULO, imagen:o.IMAGEN, fecha:o.FECHA, hora:o.HORA, lugar:o.LUGAR,
+      categoria:o.CATEGORIA, informes:o.INFORMES, nota:o.NOTA }});
+    if(doc&&doc.length) C.documentos=doc.map(function(o){return {
+      titulo:o.TITULO, tipo:o.TIPO, texto:o.DESCRIPCION, url:o.ARCHIVO }});
+    if(ga&&ga.length) C.galeria=ga.map(function(o){return {
+      titulo:o.TITULO, categoria:o.CATEGORIA, pie:o['PIE DE FOTO'], imagen:o.IMAGEN }});
+    if(vi&&vi.length) C.videos=vi.map(function(o){return {
+      titulo:o.TITULO, youtube:idYouTube(o['LIGA DE YOUTUBE']), texto:o.DESCRIPCION }});
+  })
+  .catch(function(){})
+  .then(function(){ pintar() });
+}
+
+cargarHoja();
 contadorVisitas();
 </script>
 </body>
