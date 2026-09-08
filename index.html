@@ -671,7 +671,7 @@ var CONTENIDO = {
    Mientras esté vacía, el sitio usa lo que trae este archivo.
    Cuando la pegues, la hoja manda sobre avisos, carteles,
    documentos, galería y videos.                                      */
-hoja: 'https://docs.google.com/spreadsheets/d/1oMSwJOYh9otDaemhGjqGK7WNuU0pi7QHQvKZ_TfgBDo/edit?gid=140117477#gid=140117477',
+hoja: 'https://docs.google.com/spreadsheets/d/1WT0IHkhEAzBNG47Ed6uFzCf5eGS5TPP8BLFv4spfAE8/edit?usp=drive_link',
 
 /* ===== 1. DATOS DE LA ESCUELA ===================================== */
 escuela: {
@@ -1277,10 +1277,26 @@ function idYouTube(u){
    Cada bloque va protegido: si una pestaña falla o no existe,
    el sitio sigue funcionando con lo que trae este archivo.
    ══════════════════════════════════════════════════════════════════ */
+/* Limpia el nombre de una columna: quita la nota entre paréntesis,
+   los saltos de línea, los acentos y los espacios sobrantes.
+   Así "DEPENDE DE\n(vacío = principal)" se lee igual que "DEPENDE DE". */
+function claveCol(t){
+  return String(t||'').split('\n')[0].replace(/\(.*$/,'')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\s+/g,' ').trim().toUpperCase();
+}
 function val(o,varias){
+  if(!o) return '';
+  if(!o.__n){
+    var n={}; Object.keys(o).forEach(function(k){
+      var c=claveCol(k);
+      if(n[c]==null || String(n[c]).trim()==='') n[c]=o[k];
+    });
+    try{ Object.defineProperty(o,'__n',{value:n,enumerable:false}) }catch(e){ o.__n=n }
+  }
   for(var i=0;i<varias.length;i++){
-    var k=varias[i];
-    if(o[k]!=null && String(o[k]).trim()!=='') return String(o[k]).trim();
+    var v=o.__n[claveCol(varias[i])];
+    if(v!=null && String(v).trim()!=='') return String(v).trim();
   }
   return '';
 }
@@ -1433,7 +1449,17 @@ function traerPestana(base,nombre){
   if(!u) return Promise.resolve(null);
   return fetch(u)
     .then(function(r){ if(!r.ok) throw 0; return r.text() })
-    .then(function(t){ return aObjetos(partirCSV(t)) })
+    .then(function(t){
+      var fs=aObjetos(partirCSV(t));
+      /* se agregan alias limpios sin borrar los originales */
+      fs.forEach(function(o){
+        Object.keys(o).forEach(function(k){
+          var c=claveCol(k);
+          if(c!==k && (o[c]==null||String(o[c]).trim()==='')) o[c]=o[k];
+        });
+      });
+      return fs;
+    })
     .catch(function(){ return null });
 }
 var guardadas={};
