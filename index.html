@@ -83,13 +83,16 @@ p{margin:0 0 1rem}
 /* portada */
 .banner-caja{position:relative;line-height:0}
 .banner{width:100%;height:auto;display:block}
-.sello{position:absolute;left:47.2%;top:37.5%;transform:translate(-50%,-50%);width:27%;perspective:1600px;line-height:1}
+.sello{position:absolute;left:46.4%;top:37.5%;transform:translate(-50%,-50%);width:28%;perspective:1600px;line-height:1}
 .sello__caras{position:relative;transform-style:preserve-3d;animation:giro 16s linear infinite}
 .sello__cara{width:100%;display:block;backface-visibility:hidden;filter:drop-shadow(0 8px 18px rgba(110,26,42,.28))}
 .sello__cara--b{position:absolute;inset:0;transform:rotateY(180deg)}
 @keyframes giro{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 .portada{background:var(--papel);border-bottom:1px solid var(--linea)}
-.portada__in{padding:clamp(2.4rem,5vw,4rem) 0;max-width:56rem}
+.portada__in{padding:clamp(2.4rem,5vw,4rem) 0;max-width:58rem;text-align:center}
+.portada__texto,.portada__frase{margin-left:auto;margin-right:auto}
+.portada__frase{border-left:0;border-top:3px solid var(--oro);padding:1rem 0 0}
+.acciones{justify-content:center}
 .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--dato);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--guinda);background:#fff;border:1px solid var(--linea);padding:.45rem 1rem;border-radius:999px;margin-bottom:1.3rem}
 .pulso{width:9px;height:9px;border-radius:50%;background:var(--verde);animation:pulso 2.2s ease-in-out infinite}
 @keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(47,143,91,.6)}50%{box-shadow:0 0 0 10px rgba(47,143,91,0)}}
@@ -281,7 +284,7 @@ p{margin:0 0 1rem}
   .desplegable{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:transparent;padding:.2rem 0 .6rem .8rem;max-height:0;overflow:hidden;transition:max-height .35s}
   .nav>li[data-abierto="true"] .desplegable{max-height:560px}
 }
-@media (max-width:860px){ .sello{width:32%} }
+@media (max-width:860px){ .sello{width:33%} }
 @media (max-width:520px){ .horas li{grid-template-columns:1fr;gap:.2rem} }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
