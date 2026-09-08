@@ -999,6 +999,16 @@ function ligas(t){
   s=s.replace(/\[([^\]\n]+)\]\(([^)\s]+)\)/g,function(m,a,b){return arma(a.trim(),b)});
   return s;
 }
+/* plano(): quita las marcas [[texto|archivo]] y deja sólo el texto.
+   Se usa en atributos como alt= y data-pie=, donde no puede ir HTML. */
+function plano(t){
+  return String(t==null?'':t)
+    .replace(/\[\[([^\]|]+)\|[^\]]+\]\]/g,'$1')
+    .replace(/\[([^\]\n]+)\]\([^)\s]+\)/g,'$1');
+}
+/* tieneLiga(): avisa si el texto ya trae una marca de enlace escrita a mano */
+function tieneLiga(t){ return /\[\[[^\]|]+\|[^\]]+\]\]|\[[^\]\n]+\]\([^)\s]+\)/.test(String(t||'')); }
+
 /* txt() = escapar el texto y después convertir las marcas de enlace */
 function txt(t){ return ligas(esc(t)); }
 var MESL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
@@ -1031,12 +1041,13 @@ function pintar(){
 
   $('#lista-carteles').innerHTML=(C.carteles||[]).map(function(c){
     var img=urlDrive(c.imagen);
-    return '<article class="cartel"><div class="cartel__img" data-img="'+esc(img)+'" data-pie="'+esc(c.titulo)+'">'
-      +'<img src="'+esc(img)+'" alt="'+esc(c.titulo)+'" loading="lazy"></div>'
+    return '<article class="cartel"><div class="cartel__img" data-img="'+esc(img)+'" data-pie="'+esc(plano(c.titulo))+'">'
+      +'<img src="'+esc(img)+'" alt="'+esc(plano(c.titulo))+'" loading="lazy"></div>'
       +'<div class="cartel__cuerpo"><h3>'
-      +(c.pdf ? '<a class="cartel__liga" href="'+esc(urlDoc(c.pdf))+'" target="_blank" rel="noopener">'
-                +esc(c.titulo)+' <span class="cartel__pdf">PDF</span></a>'
-              : esc(c.titulo))
+      +(tieneLiga(c.titulo) ? txt(c.titulo)
+        : c.pdf ? '<a class="liga-texto" href="'+esc(urlDoc(c.pdf))+'" target="_blank" rel="noopener">'
+                  +esc(c.titulo)+'<span class="liga-pdf">PDF</span></a>'
+        : esc(c.titulo))
       +'</h3><ul class="cartel__datos">'
       +(c.fecha?'<li><b>Fecha</b>'+esc(c.fecha)+'</li>':'')
       +(c.hora?'<li><b>Hora</b>'+esc(c.hora)+'</li>':'')
@@ -1049,11 +1060,11 @@ function pintar(){
   $('#lista-documentos').innerHTML=(C.documentos||[]).map(function(d){
     var u=d.url?urlDoc(d.url):'';
     return '<a class="doc" href="'+esc(u||'#')+'"><span class="doc__ic">'+esc(d.tipo||'DOC')+'</span>'
-      +'<span><b>'+esc(d.titulo)+'</b><small>'+txt(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
+      +'<span><b>'+txt(d.titulo)+'</b><small>'+txt(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
   }).join('');
 
   $('#lista-avisos').innerHTML=(C.avisos||[]).map(function(a){
-    return '<article class="aviso"><span class="eti">'+esc(a.categoria)+'</span><h3>'+esc(a.titulo)+'</h3>'
+    return '<article class="aviso"><span class="eti">'+esc(a.categoria)+'</span><h3>'+txt(a.titulo)+'</h3>'
       +'<span class="aviso__fecha">'+fLarga(a.fecha)+'</span><p>'+txt(a.texto)+'</p>'
       +(a.archivo?'<a class="enlace" href="'+esc(urlDoc(a.archivo))+'">'+esc(a.archivoTexto||'Abrir')+' →</a>':'')+'</article>';
   }).join('') || '<p class="pie-nota">Todavía no hay avisos publicados.</p>';
@@ -1072,7 +1083,7 @@ function pintar(){
   $('#honor').innerHTML=(C.honor||[]).map(function(h){return '<li>'+esc(h)+'</li>'}).join('');
 
   $('#historia').innerHTML=(C.historia||[]).map(function(h){
-    return '<article class="tarjeta"><p class="ojo">'+esc(h.anio)+'</p><h3>'+esc(h.titulo)+'</h3><p>'+txt(h.texto)+'</p></article>';
+    return '<article class="tarjeta"><p class="ojo">'+esc(h.anio)+'</p><h3>'+txt(h.titulo)+'</h3><p>'+txt(h.texto)+'</p></article>';
   }).join('');
   var s=C.sidar||{};
   $('#sidar-titulo').textContent=s.titulo||'';
@@ -1080,19 +1091,19 @@ function pintar(){
   $('#sidar-fuente').textContent=s.fuente||'';
 
   $('#infraestructura').innerHTML=(C.infraestructura||[]).map(function(x){
-    return '<article class="tarjeta"><div class="tarjeta__icono">'+esc(x.icono)+'</div><h3>'+esc(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+    return '<article class="tarjeta"><div class="tarjeta__icono">'+esc(x.icono)+'</div><h3>'+txt(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+txt(x.texto)+'</p></article>';
   }).join('');
   $('#campos').innerHTML=(C.campos||[]).map(function(x,i){
-    return '<article class="tarjeta'+(i%2?' tarjeta--guinda':'')+'"><p class="ojo">Campo '+(i+1)+'</p><h3>'+esc(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+    return '<article class="tarjeta'+(i%2?' tarjeta--guinda':'')+'"><p class="ojo">Campo '+(i+1)+'</p><h3>'+txt(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+txt(x.texto)+'</p></article>';
   }).join('');
   $('#grados').innerHTML=(C.grados||[]).map(function(x,i){
-    return '<article class="tarjeta"><p class="ojo">Grado '+(i+1)+'</p><h3>'+esc(x.titulo)+'</h3>'
+    return '<article class="tarjeta"><p class="ojo">Grado '+(i+1)+'</p><h3>'+txt(x.titulo)+'</h3>'
       +(x.grupos?'<span class="chip">'+esc(x.grupos)+'</span>':'')
       +'<p style="font-size:1rem;color:var(--t70)">'+txt(x.texto)+'</p></article>';
   }).join('');
   ['talleres','servicios'].forEach(function(k){
     $('#'+k).innerHTML=(C[k]||[]).map(function(x,i){
-      return '<article class="tarjeta'+(i%2?' tarjeta--guinda':'')+'"><div class="tarjeta__icono">'+esc(x.icono)+'</div><h3>'+esc(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+      return '<article class="tarjeta'+(i%2?' tarjeta--guinda':'')+'"><div class="tarjeta__icono">'+esc(x.icono)+'</div><h3>'+txt(x.titulo)+'</h3><p style="font-size:1rem;color:var(--t70)">'+txt(x.texto)+'</p></article>';
     }).join('');
   });
 
@@ -1118,7 +1129,7 @@ function pintar(){
   }).join('');
 
   $('#lista-tramites').innerHTML=(C.tramites||[]).map(function(t,i){
-    return '<details class="acordeon"'+(i===0?' open':'')+'><summary>'+esc(t.titulo)+'</summary><div class="acordeon__cuerpo">'
+    return '<details class="acordeon"'+(i===0?' open':'')+'><summary>'+txt(t.titulo)+'</summary><div class="acordeon__cuerpo">'
       +'<p style="color:var(--t70)">'+txt(t.texto)+'</p><ol class="pasos">'
       +(t.pasos||[]).map(function(p){return '<li>'+txt(p)+'</li>'}).join('')+'</ol></div></details>';
   }).join('');
@@ -1133,9 +1144,9 @@ function pintarGaleria(cat){
   var lista=(C.galeria||[]).filter(function(g){return cat==='todas'||g.categoria===cat});
   $('#rejilla-galeria').innerHTML=lista.map(function(g,i){
     var src=urlDrive(g.imagen);
-    return '<figure class="foto" style="animation-delay:'+(i*45)+'ms" data-img="'+esc(src)+'" data-pie="'+esc(g.titulo+' · '+(g.pie||''))+'">'
-      +'<img src="'+esc(src)+'" alt="'+esc(g.titulo)+'" loading="lazy">'
-      +'<figcaption><b>'+esc(g.titulo)+'</b><small>'+txt(g.pie||'')+'</small></figcaption></figure>';
+    return '<figure class="foto" style="animation-delay:'+(i*45)+'ms" data-img="'+esc(src)+'" data-pie="'+esc(plano(g.titulo)+' · '+plano(g.pie||''))+'">'
+      +'<img src="'+esc(src)+'" alt="'+esc(plano(g.titulo))+'" loading="lazy">'
+      +'<figcaption><b>'+txt(g.titulo)+'</b><small>'+txt(g.pie||'')+'</small></figcaption></figure>';
   }).join('');
 }
 
