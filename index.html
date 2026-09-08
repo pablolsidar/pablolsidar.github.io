@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Escuela Primaria General &quot;Pablo L. Sidar&quot; · 90 años">
 <meta property="og:description" content="Honrando nuestro pasado, inspirando nuestro presente y construyendo el futuro de las nuevas generaciones. 1936-2026.">
-<meta property="og:image" content="archivos/banner-90.jpg">
+<meta property="og:image" content="archivos/banner-90-limpio.jpg">
 <link rel="icon" href="archivos/escudo-escuela.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +66,7 @@ p{margin:0 0 1rem}
 
 .nav{display:flex;align-items:center;gap:.1rem;list-style:none;margin:0;padding:0}
 .nav>li{position:relative}
-.nav__b{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:.6rem .55rem;border-radius:8px;font-size:.94rem;color:var(--tinta);text-decoration:none;position:relative;white-space:nowrap}
+.nav__b{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:.6rem .62rem;border-radius:8px;font-size:.98rem;color:var(--tinta);text-decoration:none;position:relative}
 .nav__b::after{content:"";position:absolute;left:.62rem;right:.62rem;bottom:.26rem;height:2px;border-radius:2px;background:var(--guinda);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .nav__b:hover::after,.nav>li[data-abierto="true"] .nav__b::after,.nav__b[aria-current="true"]::after{transform:scaleX(1)}
 .flecha{font-size:.58rem;transition:transform .3s;color:var(--t45)}
@@ -81,9 +81,15 @@ p{margin:0 0 1rem}
 .menu-btn{display:none;background:none;border:1px solid var(--linea);border-radius:8px;padding:.55rem .8rem;cursor:pointer}
 
 /* portada */
+.banner-caja{position:relative;line-height:0}
 .banner{width:100%;height:auto;display:block}
+.sello{position:absolute;left:47.2%;top:34%;transform:translate(-50%,-50%);width:27%;perspective:1600px;line-height:1}
+.sello__caras{position:relative;transform-style:preserve-3d;animation:giro 16s linear infinite}
+.sello__cara{width:100%;display:block;backface-visibility:hidden;filter:drop-shadow(0 8px 18px rgba(110,26,42,.28))}
+.sello__cara--b{position:absolute;inset:0;transform:rotateY(180deg)}
+@keyframes giro{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 .portada{background:var(--papel);border-bottom:1px solid var(--linea)}
-.portada__in{padding:clamp(2.4rem,5vw,4rem) 0 clamp(2.4rem,5vw,4rem);display:grid;grid-template-columns:1.4fr .6fr;gap:2.5rem;align-items:center}
+.portada__in{padding:clamp(2.4rem,5vw,4rem) 0;max-width:56rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--dato);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--guinda);background:#fff;border:1px solid var(--linea);padding:.45rem 1rem;border-radius:999px;margin-bottom:1.3rem}
 .pulso{width:9px;height:9px;border-radius:50%;background:var(--verde);animation:pulso 2.2s ease-in-out infinite}
 @keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(47,143,91,.6)}50%{box-shadow:0 0 0 10px rgba(47,143,91,0)}}
@@ -97,11 +103,6 @@ p{margin:0 0 1rem}
 .boton--oro:hover{transform:translateY(-3px);background:#a1750a}
 .boton--linea{border-color:var(--guinda);color:var(--guinda)}
 .boton--linea:hover{background:var(--guinda);color:#fff;transform:translateY(-3px)}
-.sello{justify-self:center;width:min(340px,40vw);perspective:1400px}
-.sello__caras{position:relative;transform-style:preserve-3d;animation:giro 16s linear infinite}
-.sello__cara{width:100%;display:block;backface-visibility:hidden;filter:drop-shadow(0 12px 24px rgba(110,26,42,.25))}
-.sello__cara--b{position:absolute;inset:0;transform:rotateY(180deg)}
-@keyframes giro{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 
 .cinta{height:34px;background-image:url("archivos/cinta.png");background-repeat:repeat-x;background-size:auto 34px;background-color:var(--crema)}
 .franja{background:var(--guinda);color:#fff;overflow:hidden;padding:.75rem 0}
@@ -270,7 +271,7 @@ p{margin:0 0 1rem}
 .arriba[data-visible="true"]{opacity:1;pointer-events:auto}
 .arriba:hover{transform:translateY(-4px)}
 
-@media (max-width:1180px){
+@media (max-width:1060px){
   .menu-btn{display:block;position:relative;z-index:95}
   .cta{display:none}
   .nav{position:fixed;inset:0 0 0 auto;width:min(370px,88vw);background:var(--crema);flex-direction:column;align-items:stretch;gap:0;padding:5.5rem 1.2rem 3rem;overflow-y:auto;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.3,1);box-shadow:-14px 0 40px rgba(0,0,0,.18)}
@@ -280,10 +281,7 @@ p{margin:0 0 1rem}
   .desplegable{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:transparent;padding:.2rem 0 .6rem .8rem;max-height:0;overflow:hidden;transition:max-height .35s}
   .nav>li[data-abierto="true"] .desplegable{max-height:560px}
 }
-@media (max-width:860px){
-  .portada__in{grid-template-columns:1fr;gap:1.6rem}
-  .sello{width:min(240px,55vw);order:-1;justify-self:center}
-}
+@media (max-width:860px){ .sello{width:32%} }
 @media (max-width:520px){ .horas li{grid-template-columns:1fr;gap:.2rem} }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -361,11 +359,19 @@ p{margin:0 0 1rem}
 
 <main id="contenido">
 
-<img class="banner" src="archivos/banner-90.jpg" alt="Noventa aniversario de la Escuela Primaria General Pablo L. Sidar, 1936-2026">
+<div class="banner-caja">
+  <img class="banner" src="archivos/banner-90-limpio.jpg" alt="Noventa aniversario de la Escuela Primaria General Pablo L. Sidar, 1936-2026">
+  <div class="sello">
+    <div class="sello__caras">
+      <img class="sello__cara" src="archivos/logo-90-aro.png" alt="Emblema del 90 aniversario">
+      <img class="sello__cara sello__cara--b" src="archivos/logo-90-aro.png" alt="" aria-hidden="true">
+    </div>
+  </div>
+</div>
 
 <section class="portada" id="inicio">
-  <div class="env portada__in">
-    <div>
+  <div class="env">
+    <div class="portada__in">
       <span class="eyebrow"><i class="pulso"></i> Inscripciones abiertas todo el año</span>
       <h1>Escuela Primaria General <em>"Pablo L. Sidar"</em></h1>
       <p class="portada__texto" data-c="bienvenida"></p>
@@ -373,12 +379,6 @@ p{margin:0 0 1rem}
       <div class="acciones">
         <a class="boton boton--oro" href="#convocatorias">Ver convocatorias →</a>
         <a class="boton boton--linea" href="#programa">Programa del aniversario</a>
-      </div>
-    </div>
-    <div class="sello">
-      <div class="sello__caras">
-        <img class="sello__cara" src="archivos/logo-90-completo.png" alt="Emblema del 90 aniversario de la escuela">
-        <img class="sello__cara sello__cara--b" src="archivos/logo-90-completo.png" alt="" aria-hidden="true">
       </div>
     </div>
   </div>
@@ -1079,7 +1079,7 @@ $$('[data-menu]').forEach(function(li){
     li.setAttribute('data-abierto',String(v)); b.setAttribute('aria-expanded',String(v));
   };
   b.addEventListener('click',function(ev){ev.preventDefault();abrir(li.getAttribute('data-abierto')!=='true')});
-  if(window.matchMedia('(min-width:1181px)').matches){
+  if(window.matchMedia('(min-width:1061px)').matches){
     li.addEventListener('mouseenter',function(){abrir(true)});
     li.addEventListener('mouseleave',function(){abrir(false)});
   }
