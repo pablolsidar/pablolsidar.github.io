@@ -1079,7 +1079,7 @@ $$('[data-menu]').forEach(function(li){
     li.setAttribute('data-abierto',String(v)); b.setAttribute('aria-expanded',String(v));
   };
   b.addEventListener('click',function(ev){ev.preventDefault();abrir(li.getAttribute('data-abierto')!=='true')});
-  if(window.matchMedia('(min-width:1061px)').matches){
+  if(window.matchMedia('(min-width:1181px)').matches){
     li.addEventListener('mouseenter',function(){abrir(true)});
     li.addEventListener('mouseleave',function(){abrir(false)});
   }
