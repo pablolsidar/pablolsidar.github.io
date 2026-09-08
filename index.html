@@ -166,6 +166,11 @@ p{margin:0 0 1rem}
 .enlace:hover{border-color:var(--guinda)}
 
 /* carteles */
+.cartel__liga{color:inherit;text-decoration:none;border-bottom:2px solid var(--oro);transition:color .2s}
+.cartel__liga:hover{color:var(--guinda-cl)}
+.cartel__pdf{display:inline-block;vertical-align:middle;margin-left:.35rem;padding:.08rem .38rem;
+  border-radius:4px;background:var(--oro);color:#fff;font-family:var(--dato);font-size:.62em;
+  font-weight:500;letter-spacing:.04em}
 .carteles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem}
 .cartel{background:#fff;border:1px solid var(--linea);border-radius:var(--r);overflow:hidden;transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
 .cartel:hover{transform:translateY(-8px);box-shadow:var(--sombra-alta)}
@@ -304,6 +309,15 @@ html[data-sin-animacion="true"] *{animation:none!important;transition:none!impor
 html[data-sin-animacion="true"] .rev{opacity:1!important;transform:none!important}
 /* orden de secciones controlado desde la hoja */
 main#contenido{display:flex;flex-direction:column}
+
+/* enlaces escritos dentro de un texto */
+.liga-texto{color:var(--guinda);text-decoration:none;border-bottom:2px solid var(--oro);
+  transition:color .2s,border-color .2s;font-weight:500}
+.liga-texto:hover{color:var(--guinda-cl);border-bottom-color:var(--guinda-cl)}
+.liga-pdf{display:inline-block;vertical-align:middle;margin-left:.3rem;padding:.06rem .36rem;
+  border-radius:4px;background:var(--oro);color:#fff;font-family:var(--dato);
+  font-size:.6em;font-weight:500;letter-spacing:.04em;border:0}
+.tarjeta--guinda .liga-texto,.dia .liga-texto{color:var(--oro-cl);border-bottom-color:var(--oro-cl)}
 </style>
 </head>
 
@@ -671,7 +685,7 @@ var CONTENIDO = {
    Mientras esté vacía, el sitio usa lo que trae este archivo.
    Cuando la pegues, la hoja manda sobre avisos, carteles,
    documentos, galería y videos.                                      */
-hoja: 'https://docs.google.com/spreadsheets/d/1zhqBf8foMGDi57UQvlUNPIQvrIrYY2pq-iYZqvmHDL8/edit?gid=414931010#gid=414931010',
+hoja: 'https://docs.google.com/spreadsheets/d/1WT0IHkhEAzBNG47Ed6uFzCf5eGS5TPP8BLFv4spfAE8/edit?usp=drive_link',
 
 /* ===== 1. DATOS DE LA ESCUELA ===================================== */
 escuela: {
@@ -960,6 +974,33 @@ var C=CONTENIDO;
 var $=function(s,c){return (c||document).querySelector(s)};
 var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 var esc=function(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
+
+/* ══════════════════════════════════════════════════════════════════
+   ENLACES DENTRO DE CUALQUIER TEXTO
+   En la hoja de cálculo se escribe así:
+       [[la palabra que se ve|archivos/convocatoria.pdf]]
+   También se acepta la forma corta:
+       [la palabra que se ve](archivos/convocatoria.pdf)
+   Funciona con archivos del sitio y con vínculos de Google Drive.
+   ══════════════════════════════════════════════════════════════════ */
+function ligas(t){
+  var s=String(t==null?'':t);
+  var arma=function(texto,url){
+    url=String(url).trim();
+    /* &amp; viene del escapado previo; se devuelve a & para el href */
+    var limpia=url.replace(/&amp;/g,'&');
+    var esPdf=/\.pdf(\?|$)/i.test(limpia);
+    var externo=/^https?:/i.test(limpia);
+    return '<a class="liga-texto" href="'+esc(urlDoc(limpia))+'"'
+      +(externo||esPdf?' target="_blank" rel="noopener"':'')+'>'
+      +texto+(esPdf?'<span class="liga-pdf">PDF</span>':'')+'</a>';
+  };
+  s=s.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g,function(m,a,b){return arma(a.trim(),b)});
+  s=s.replace(/\[([^\]\n]+)\]\(([^)\s]+)\)/g,function(m,a,b){return arma(a.trim(),b)});
+  return s;
+}
+/* txt() = escapar el texto y después convertir las marcas de enlace */
+function txt(t){ return ligas(esc(t)); }
 var MESL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 function fLarga(iso){var p=String(iso||'').split('-');return p.length<3?'':Number(p[2])+' de '+MESL[+p[1]-1]+' de '+p[0]}
 function urlDrive(u){
@@ -992,24 +1033,28 @@ function pintar(){
     var img=urlDrive(c.imagen);
     return '<article class="cartel"><div class="cartel__img" data-img="'+esc(img)+'" data-pie="'+esc(c.titulo)+'">'
       +'<img src="'+esc(img)+'" alt="'+esc(c.titulo)+'" loading="lazy"></div>'
-      +'<div class="cartel__cuerpo"><h3>'+esc(c.titulo)+'</h3><ul class="cartel__datos">'
+      +'<div class="cartel__cuerpo"><h3>'
+      +(c.pdf ? '<a class="cartel__liga" href="'+esc(urlDoc(c.pdf))+'" target="_blank" rel="noopener">'
+                +esc(c.titulo)+' <span class="cartel__pdf">PDF</span></a>'
+              : esc(c.titulo))
+      +'</h3><ul class="cartel__datos">'
       +(c.fecha?'<li><b>Fecha</b>'+esc(c.fecha)+'</li>':'')
       +(c.hora?'<li><b>Hora</b>'+esc(c.hora)+'</li>':'')
       +(c.lugar?'<li><b>Lugar</b>'+esc(c.lugar)+'</li>':'')
       +(c.categoria?'<li><b>Categoría</b>'+esc(c.categoria)+'</li>':'')
       +(c.informes?'<li><b>Informes</b>'+esc(c.informes)+'</li>':'')
-      +'</ul>'+(c.nota?'<p class="pie-nota" style="margin:.4rem 0 0">'+esc(c.nota)+'</p>':'')+'</div></article>';
+      +'</ul>'+(c.nota?'<p class="pie-nota" style="margin:.4rem 0 0">'+txt(c.nota)+'</p>':'')+'</div></article>';
   }).join('');
 
   $('#lista-documentos').innerHTML=(C.documentos||[]).map(function(d){
     var u=d.url?urlDoc(d.url):'';
     return '<a class="doc" href="'+esc(u||'#')+'"><span class="doc__ic">'+esc(d.tipo||'DOC')+'</span>'
-      +'<span><b>'+esc(d.titulo)+'</b><small>'+esc(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
+      +'<span><b>'+esc(d.titulo)+'</b><small>'+txt(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
   }).join('');
 
   $('#lista-avisos').innerHTML=(C.avisos||[]).map(function(a){
     return '<article class="aviso"><span class="eti">'+esc(a.categoria)+'</span><h3>'+esc(a.titulo)+'</h3>'
-      +'<span class="aviso__fecha">'+fLarga(a.fecha)+'</span><p>'+esc(a.texto)+'</p>'
+      +'<span class="aviso__fecha">'+fLarga(a.fecha)+'</span><p>'+txt(a.texto)+'</p>'
       +(a.archivo?'<a class="enlace" href="'+esc(urlDoc(a.archivo))+'">'+esc(a.archivoTexto||'Abrir')+' →</a>':'')+'</article>';
   }).join('') || '<p class="pie-nota">Todavía no hay avisos publicados.</p>';
 
@@ -1021,17 +1066,17 @@ function pintar(){
     return '<div class="panel" id="d'+i+'" role="tabpanel"'+(i?' hidden':'')+'>'
       +'<div class="dia-cab"><h3>'+esc(d.dia)+' '+esc(d.numero)+' de octubre</h3><small>'+esc(d.nota||'')+' · 2026</small></div>'
       +'<ul class="horas">'+(d.actividades||[]).map(function(a){
-        return '<li><b>'+esc(a.hora)+'</b><span>'+esc(a.texto)+'</span></li>';}).join('')+'</ul></div>';
+        return '<li><b>'+esc(a.hora)+'</b><span>'+txt(a.texto)+'</span></li>';}).join('')+'</ul></div>';
   }).join('');
   conectarDias();
   $('#honor').innerHTML=(C.honor||[]).map(function(h){return '<li>'+esc(h)+'</li>'}).join('');
 
   $('#historia').innerHTML=(C.historia||[]).map(function(h){
-    return '<article class="tarjeta"><p class="ojo">'+esc(h.anio)+'</p><h3>'+esc(h.titulo)+'</h3><p>'+esc(h.texto)+'</p></article>';
+    return '<article class="tarjeta"><p class="ojo">'+esc(h.anio)+'</p><h3>'+esc(h.titulo)+'</h3><p>'+txt(h.texto)+'</p></article>';
   }).join('');
   var s=C.sidar||{};
   $('#sidar-titulo').textContent=s.titulo||'';
-  $('#sidar-texto').innerHTML=(s.parrafos||[]).map(function(t){return '<p style="color:var(--t70)">'+esc(t)+'</p>'}).join('');
+  $('#sidar-texto').innerHTML=(s.parrafos||[]).map(function(t){return '<p style="color:var(--t70)">'+txt(t)+'</p>'}).join('');
   $('#sidar-fuente').textContent=s.fuente||'';
 
   $('#infraestructura').innerHTML=(C.infraestructura||[]).map(function(x){
@@ -1043,7 +1088,7 @@ function pintar(){
   $('#grados').innerHTML=(C.grados||[]).map(function(x,i){
     return '<article class="tarjeta"><p class="ojo">Grado '+(i+1)+'</p><h3>'+esc(x.titulo)+'</h3>'
       +(x.grupos?'<span class="chip">'+esc(x.grupos)+'</span>':'')
-      +'<p style="font-size:1rem;color:var(--t70)">'+esc(x.texto)+'</p></article>';
+      +'<p style="font-size:1rem;color:var(--t70)">'+txt(x.texto)+'</p></article>';
   }).join('');
   ['talleres','servicios'].forEach(function(k){
     $('#'+k).innerHTML=(C[k]||[]).map(function(x,i){
@@ -1064,7 +1109,7 @@ function pintar(){
   $('#lista-videos').innerHTML=(C.videos||[]).map(function(v){
     return '<div><div class="video" data-video="'+esc(v.youtube)+'">'
       +'<button class="video__tapa" style="background-image:url(https://i.ytimg.com/vi/'+esc(v.youtube)+'/hqdefault.jpg)"><span class="video__play">▶</span><b>'+esc(v.titulo)+'</b></button>'
-      +'</div><p class="pie-nota" style="margin-top:.7rem">'+esc(v.texto||'')+'</p></div>';
+      +'</div><p class="pie-nota" style="margin-top:.7rem">'+txt(v.texto||'')+'</p></div>';
   }).join('');
 
   $('#lista-directorio').innerHTML=(C.directorio||[]).map(function(p,i){
@@ -1074,8 +1119,8 @@ function pintar(){
 
   $('#lista-tramites').innerHTML=(C.tramites||[]).map(function(t,i){
     return '<details class="acordeon"'+(i===0?' open':'')+'><summary>'+esc(t.titulo)+'</summary><div class="acordeon__cuerpo">'
-      +'<p style="color:var(--t70)">'+esc(t.texto)+'</p><ol class="pasos">'
-      +(t.pasos||[]).map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ol></div></details>';
+      +'<p style="color:var(--t70)">'+txt(t.texto)+'</p><ol class="pasos">'
+      +(t.pasos||[]).map(function(p){return '<li>'+txt(p)+'</li>'}).join('')+'</ol></div></details>';
   }).join('');
 
   revelar(); contar(); conectarVideos(); pestanaNueva();
@@ -1090,7 +1135,7 @@ function pintarGaleria(cat){
     var src=urlDrive(g.imagen);
     return '<figure class="foto" style="animation-delay:'+(i*45)+'ms" data-img="'+esc(src)+'" data-pie="'+esc(g.titulo+' · '+(g.pie||''))+'">'
       +'<img src="'+esc(src)+'" alt="'+esc(g.titulo)+'" loading="lazy">'
-      +'<figcaption><b>'+esc(g.titulo)+'</b><small>'+esc(g.pie||'')+'</small></figcaption></figure>';
+      +'<figcaption><b>'+esc(g.titulo)+'</b><small>'+txt(g.pie||'')+'</small></figcaption></figure>';
   }).join('');
 }
 
@@ -1475,7 +1520,8 @@ function cargarHoja(){
       archivo:o.ARCHIVO, archivoTexto:o['TEXTO DEL BOTON']||'Abrir documento' }});
     if(ca&&ca.length) C.carteles=ca.map(function(o){return {
       titulo:o.TITULO, imagen:o.IMAGEN, fecha:o.FECHA, hora:o.HORA, lugar:o.LUGAR,
-      categoria:o.CATEGORIA, informes:o.INFORMES, nota:o.NOTA }});
+      categoria:o.CATEGORIA, informes:o.INFORMES, nota:o.NOTA,
+      pdf:val(o,['PDF','CONVOCATORIA','ARCHIVO','DOCUMENTO']) }});
     if(doc&&doc.length) C.documentos=doc.map(function(o){return {
       titulo:o.TITULO, tipo:o.TIPO, texto:o.DESCRIPCION, url:o.ARCHIVO }});
     if(ga&&ga.length) C.galeria=ga.map(function(o){return {
