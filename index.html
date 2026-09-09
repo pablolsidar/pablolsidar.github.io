@@ -61,8 +61,11 @@ p{margin:0 0 1rem}
 .marca{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--tinta)}
 .marca img{width:56px;height:56px;object-fit:contain;flex:none;transition:transform .5s}
 .marca:hover img{transform:scale(1.08) rotate(-4deg)}
-.marca__nom{font-family:var(--display);font-weight:800;font-size:1.22rem;line-height:1.05;display:block}
-.marca__sub{font-family:var(--dato);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t45)}
+.marca>span{display:flex;flex-direction:column;gap:.06rem;line-height:1}
+.marca__nom{font-family:var(--display);font-weight:800;font-size:1.22rem;line-height:1;display:block;margin:0}
+.marca__sub{font-family:var(--dato);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t45);line-height:1.1;display:block;margin:0}
+.marca__lugar{font-family:var(--dato);font-size:.6rem;letter-spacing:.06em;color:var(--t45);line-height:1.1;display:block;margin:0}
+@media (max-width:520px){.marca__lugar{display:none}}
 
 .nav{display:flex;align-items:center;gap:.1rem;list-style:none;margin:0;padding:0}
 .nav>li{position:relative}
@@ -318,6 +321,13 @@ main#contenido{display:flex;flex-direction:column}
   border-radius:4px;background:var(--oro);color:#fff;font-family:var(--dato);
   font-size:.6em;font-weight:500;letter-spacing:.04em;border:0}
 .tarjeta--guinda .liga-texto,.dia .liga-texto{color:var(--oro-cl);border-bottom-color:var(--oro-cl)}
+
+/* cinta de grecas arriba del banner */
+.cinta--alta{border-bottom:2px solid var(--oro)}
+
+/* boton de WhatsApp */
+.boton--wa{background:#25D366;color:#fff;border:1px solid #1EBE5A}
+.boton--wa:hover{background:#1EBE5A}
 </style>
 </head>
 
@@ -346,6 +356,7 @@ main#contenido{display:flex;flex-direction:column}
       <span>
         <span class="marca__nom">Pablo L. Sidar</span>
         <span class="marca__sub">Primaria general · 1936</span>
+        <span class="marca__lugar">Sta. Ma. Tlahuitoltepec, Mixe, Oax.</span>
       </span>
     </a>
     <nav aria-label="Menú principal">
@@ -392,6 +403,8 @@ main#contenido{display:flex;flex-direction:column}
 
 <main id="contenido">
 
+<div class="cinta cinta--alta" role="presentation"></div>
+
 <div class="banner-caja">
   <img class="banner" src="archivos/banner-90-limpio.jpg" alt="Noventa aniversario de la Escuela Primaria General Pablo L. Sidar, 1936-2026">
   <div class="sello">
@@ -430,7 +443,6 @@ main#contenido{display:flex;flex-direction:column}
   </div>
 </section>
 
-<div class="cinta" role="presentation"></div>
 
 <section class="seccion seccion--papel" id="documentos">
   <div class="env">
@@ -611,11 +623,13 @@ main#contenido{display:flex;flex-direction:column}
           <div><dt>Domicilio</dt><dd data-c="domicilio"></dd></div>
           <div><dt>Horario de atención</dt><dd data-c="horario"></dd></div>
           <div><dt>Teléfono</dt><dd><a id="tel-liga" href="#" data-c="telefono"></a></dd></div>
+          <div id="fila-wa" hidden><dt>WhatsApp</dt><dd><a id="wa-liga" href="#" target="_blank" rel="noopener"></a></dd></div>
           <div><dt>Correo</dt><dd><a id="mail-liga" href="#" data-c="correo"></a></dd></div>
           <div><dt>Supervisión escolar</dt><dd>Zona 027 de primaria general · San Pedro y San Pablo Ayutla Mixe, Oaxaca</dd></div>
         </dl>
         <p style="margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.8rem">
           <a class="boton boton--oro" id="mail-boton" href="#">Escribir a la escuela</a>
+          <a class="boton boton--wa" id="wa-boton" href="#" target="_blank" rel="noopener" hidden>Escribir por WhatsApp</a>
           <a class="boton boton--linea" data-l="mapa" href="#">Abrir en Google Maps</a>
         </p>
       </div>
@@ -700,6 +714,7 @@ escuela: {
   domicilio: 'Independencia núm. 1, Centro, Santa María Tlahuitoltepec Mixe, Oaxaca',
   telefono: '283 128 2452',
   correo: 'primariapablolsidar@gmail.com',
+  whatsapp: '283 128 2452',
   bienvenida: 'Bienvenidos a una ventana más del saber. Página oficial de la Escuela Primaria General "Pablo L. Sidar" de Santa María Tlahuitoltepec Mixe, Oaxaca.',
   mision: 'Brindar educación primaria de calidad a las niñas y los niños de Santa María Tlahuitoltepec Mixe, mediante una formación integral que articula lo académico, lo artístico, lo deportivo y lo comunitario desde la identidad ayuujk.',
   vision: 'Consolidarnos como institución pionera en formación integral en la región mixe, con resultados de aprendizaje sólidos, vida colegiada fuerte y participación permanente de las familias y la asamblea comunitaria.',
@@ -1033,7 +1048,31 @@ function pintar(){
   $('#anio').textContent=new Date().getFullYear();
   $$('[data-l]').forEach(function(el){var u=(C.ligas||{})[el.getAttribute('data-l')];if(u) el.href=u});
   if(e.telefono) $('#tel-liga').href='tel:+52'+String(e.telefono).replace(/\D/g,'');
-  if(e.correo){ $('#mail-liga').href='mailto:'+e.correo; $('#mail-boton').href='mailto:'+e.correo; }
+  if(e.correo){
+    $('#mail-liga').href='mailto:'+e.correo;
+    /* El botón abre Gmail para redactar. Si el navegador no puede,
+       Gmail mismo ofrece el correo normal. Es más confiable que mailto:
+       en computadoras sin programa de correo configurado. */
+    $('#mail-boton').href='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(e.correo);
+    $('#mail-boton').target='_blank'; $('#mail-boton').rel='noopener';
+  }
+  /* ── WhatsApp ──
+     Se usa el número de la fila WHATSAPP de la pestaña TEXTOS.
+     Si esa fila está vacía, se usa el teléfono de la escuela.        */
+  (function(){
+    var crudo = e.whatsapp || e.telefono || '';
+    var d = String(crudo).replace(/\D/g,'');
+    if(d.length===10) d='52'+d;              /* número mexicano de 10 dígitos */
+    if(d.length===12 && d.indexOf('52')===0){ /* correcto */ }
+    if(d.length<10){ return; }               /* sin número válido: no se muestra */
+    var url='https://wa.me/'+d;
+    var texto = e.whatsappTexto || 'Buen día, me comunico de parte de la comunidad escolar.';
+    url += '?text='+encodeURIComponent(texto);
+    var liga=$('#wa-liga'), fila=$('#fila-wa'), bot=$('#wa-boton');
+    if(liga){ liga.href=url; liga.textContent=String(crudo).trim(); }
+    if(fila) fila.hidden=false;
+    if(bot){ bot.href=url; bot.hidden=false; }
+  })();
 
   var lema=(e.lema||'')+' · '+(e.nombre||'')+' · CCT '+(e.cct||'')+' · 1936-2026';
   var t='<span>'+esc(lema)+' <i>◆</i></span>';
@@ -1376,6 +1415,7 @@ function aplicarTextos(filas){
     'NOMBRE DE LA ESCUELA':'nombre','LEMA':'lema','BIENVENIDA':'bienvenida',
     'MISION':'mision','VISION':'vision','HISTORIA':'historia','HORARIO':'horario',
     'DOMICILIO':'domicilio','CORREO':'correo','TELEFONO':'telefono',
+    'WHATSAPP':'whatsapp','MENSAJE DE WHATSAPP':'whatsappTexto',
     'CCT':'cct','ZONA':'zona','ZONA ESCOLAR':'zona','TURNO':'turno',
     'CICLO':'ciclo','CICLO ESCOLAR':'ciclo','DIRECTOR':'director'
   };
