@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pablolsidar.github.io/sitemap.xml
