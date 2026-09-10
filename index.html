@@ -1051,7 +1051,11 @@ tramites: [
 ],
 
 /* ===== 16. CONTADOR DE VISITAS ==================================== */
-contador: { activo:true, espacio:'pablolsidar', llave:'sitio' }
+/* CounterAPI V2 (la V1 dejó de funcionar el 7 de agosto de 2026).
+   espacio = nombre corto (slug) del workspace creado en counterapi.dev
+   llave   = nombre del contador · previas = visitas que se suman al total
+   Todo esto también se puede cambiar desde la pestaña TEXTOS de la hoja. */
+contador: { activo:true, espacio:'pablolsidar', llave:'visitas', previas:0 }
 
 };
 
@@ -1402,13 +1406,21 @@ if('IntersectionObserver' in window){
 
 function contadorVisitas(){
   var cfg=C.contador||{}; if(cfg.activo===false) return;
-  fetch('https://api.counterapi.dev/v1/'+(cfg.espacio||'pablolsidar')+'/'+(cfg.llave||'sitio')+'/up')
-    .then(function(r){return r.json()})
+  var esp=encodeURIComponent(String(cfg.espacio||'pablolsidar').trim());
+  var nom=encodeURIComponent(String(cfg.llave||'visitas').trim());
+  fetch('https://api.counterapi.dev/v2/'+esp+'/'+nom+'/up')
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json() })
     .then(function(d){
-      var n=(d&&(d.count!=null?d.count:d.value)); if(n==null) return;
-      $('#contador-n').textContent=Number(n).toLocaleString('es-MX');
+      var x=(d&&d.data)||d||{};
+      var n=null;
+      if(x.up_count!=null) n=Number(x.up_count)-Number(x.down_count||0);
+      else if(x.value!=null) n=Number(x.value);
+      else if(x.count!=null) n=Number(x.count);
+      if(n==null||isNaN(n)) return;
+      n+=Number(cfg.previas||0);
+      $('#contador-n').textContent=n.toLocaleString('es-MX');
       $('#contador').hidden=false;
-    }).catch(function(){});
+    }).catch(function(e){ try{console.warn('Contador de visitas:',e.message)}catch(_){} });
 }
 
 /* ============ LECTURA DE LA HOJA DE CÁLCULO PUBLICADA ============ */
@@ -1498,6 +1510,19 @@ function aplicarTextos(filas){
     var k=sinAcentos(val(o,['SECCION','SECCIÓN','ELEMENTO','CAMPO']));
     var v=val(o,['CONTENIDO','TEXTO','VALOR']);
     if(!k||!v) return;
+    if(k.indexOf('CONTADOR')===0 || k==='VISITAS PREVIAS'){
+      C.contador=C.contador||{};
+      if(k==='CONTADOR' || k==='CONTADOR ACTIVO'){
+        var s=sinAcentos(v); C.contador.activo=!(s.charAt(0)==='N' || s==='OCULTO' || s==='APAGADO');
+      } else if(k==='CONTADOR ESPACIO' || k==='CONTADOR WORKSPACE'){
+        C.contador.espacio=v.trim();
+      } else if(k==='CONTADOR NOMBRE' || k==='CONTADOR LLAVE'){
+        C.contador.llave=v.trim();
+      } else if(k==='VISITAS PREVIAS' || k==='CONTADOR VISITAS PREVIAS'){
+        C.contador.previas=parseInt(String(v).replace(/[^0-9]/g,''),10)||0;
+      }
+      return;
+    }
     if(k==='VALORES'){
       C.escuela.valores=v.split(/[,;\n]+/).map(function(s){return s.trim()}).filter(Boolean);
     } else if(mapa[k]){
@@ -1636,7 +1661,7 @@ function traerPestana(base,nombre){
 var guardadas={};
 function cargarHoja(){
   var base=(C.hoja||'').trim();
-  if(!base){ pintar(); return; }
+  if(!base){ pintar(); contadorVisitas(); return; }
   var PESTANAS=['AVISOS','CARTELES','DOCUMENTOS','GALERIA','VIDEOS','TEXTOS','COLORES','MENU','SECCIONES','BANNER'];
   Promise.all(PESTANAS.map(function(n){return traerPestana(base,n)}))
   .then(function(r){
@@ -1665,11 +1690,11 @@ function cargarHoja(){
     try{ aplicarMenu(guardadas.menu) }catch(e){}
     try{ aplicarSecciones(guardadas.secciones) }catch(e){}
     try{ aplicarBanner(guardadas.banner) }catch(e){}
+    contadorVisitas();
   });
 }
 
 cargarHoja();
-contadorVisitas();
 </script>
 </body>
 </html>
