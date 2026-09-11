@@ -1051,11 +1051,11 @@ tramites: [
 ],
 
 /* ===== 16. CONTADOR DE VISITAS ==================================== */
-/* CounterAPI V2 (la V1 dejó de funcionar el 7 de agosto de 2026).
-   espacio = nombre corto (slug) del workspace creado en counterapi.dev
-   llave   = nombre del contador · previas = visitas que se suman al total
-   Todo esto también se puede cambiar desde la pestaña TEXTOS de la hoja. */
-contador: { activo:true, espacio:'pablolsidar', llave:'visitas', previas:0 }
+/* El contador se guarda en la pestaña CONTADOR de la hoja de Google,
+   mediante un pequeño script de Google (Apps Script).
+   La dirección del script (termina en /exec) se escribe en la pestaña
+   TEXTOS, en la fila CONTADOR URL. No hace falta cambiarla aquí. */
+contador: { activo:true, url:'', previas:0 }
 
 };
 
@@ -1406,21 +1406,25 @@ if('IntersectionObserver' in window){
 
 function contadorVisitas(){
   var cfg=C.contador||{}; if(cfg.activo===false) return;
-  var esp=encodeURIComponent(String(cfg.espacio||'pablolsidar').trim());
-  var nom=encodeURIComponent(String(cfg.llave||'visitas').trim());
-  fetch('https://api.counterapi.dev/v2/'+esp+'/'+nom+'/up')
-    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json() })
-    .then(function(d){
-      var x=(d&&d.data)||d||{};
-      var n=null;
-      if(x.up_count!=null) n=Number(x.up_count)-Number(x.down_count||0);
-      else if(x.value!=null) n=Number(x.value);
-      else if(x.count!=null) n=Number(x.count);
-      if(n==null||isNaN(n)) return;
-      n+=Number(cfg.previas||0);
-      $('#contador-n').textContent=n.toLocaleString('es-MX');
-      $('#contador').hidden=false;
-    }).catch(function(e){ try{console.warn('Contador de visitas:',e.message)}catch(_){} });
+  var url=String(cfg.url||'').trim();
+  if(!/^https:\/\/script\.google(usercontent)?\.com\//.test(url)) return;
+  /* cuenta una sola vez por visita: si la persona recarga, solo consulta */
+  var yaContada=false;
+  try{ yaContada=sessionStorage.getItem('pls-visita')==='1' }catch(e){}
+  var nombre='plsContador'+Date.now()+Math.floor(Math.random()*1e6);
+  var s=document.createElement('script');
+  var limpiar=function(){ try{delete window[nombre]}catch(e){window[nombre]=undefined} if(s.parentNode) s.parentNode.removeChild(s) };
+  window[nombre]=function(d){
+    limpiar();
+    var n=Number(d&&d.visitas); if(isNaN(n)) return;
+    try{ sessionStorage.setItem('pls-visita','1') }catch(e){}
+    n+=Number(cfg.previas||0);
+    $('#contador-n').textContent=n.toLocaleString('es-MX');
+    $('#contador').hidden=false;
+  };
+  s.onerror=function(){ limpiar(); try{console.warn('Contador de visitas: no se pudo conectar con el script')}catch(e){} };
+  s.src=url+(url.indexOf('?')<0?'?':'&')+(yaContada?'solo=ver&':'')+'callback='+nombre+'&t='+Date.now();
+  document.body.appendChild(s);
 }
 
 /* ============ LECTURA DE LA HOJA DE CÁLCULO PUBLICADA ============ */
@@ -1514,6 +1518,8 @@ function aplicarTextos(filas){
       C.contador=C.contador||{};
       if(k==='CONTADOR' || k==='CONTADOR ACTIVO'){
         var s=sinAcentos(v); C.contador.activo=!(s.charAt(0)==='N' || s==='OCULTO' || s==='APAGADO');
+      } else if(k==='CONTADOR URL' || k==='CONTADOR ENLACE' || k==='CONTADOR LIGA' || k==='CONTADOR DIRECCION'){
+        C.contador.url=v.trim();
       } else if(k==='CONTADOR ESPACIO' || k==='CONTADOR WORKSPACE'){
         C.contador.espacio=v.trim();
       } else if(k==='CONTADOR NOMBRE' || k==='CONTADOR LLAVE'){
