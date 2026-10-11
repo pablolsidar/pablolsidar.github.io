@@ -1506,6 +1506,13 @@ function visible(o){
   var v=val(o,['MOSTRAR','VISIBLE']);
   return v==='' || v.toUpperCase().charAt(0)==='S' || v.toUpperCase()==='SI' || v.toUpperCase()==='SÍ';
 }
+/* Filtra las filas con MOSTRAR = NO y respeta la columna ORDEN si existe.
+   Si una pestaña no tiene esas columnas, todo se publica como siempre. */
+function publicables(filas){
+  var vis=(filas||[]).filter(visible);
+  var conOrden=vis.some(function(o){ return val(o,['ORDEN'])!=='' });
+  return conOrden ? vis.slice().sort(porOrden) : vis;
+}
 function porOrden(a,b){
   var x=parseFloat(val(a,['ORDEN'])), y=parseFloat(val(b,['ORDEN']));
   if(isNaN(x)) x=9999; if(isNaN(y)) y=9999;
@@ -1547,6 +1554,16 @@ function aplicarTextos(filas){
     }
     if(k==='VALORES'){
       C.escuela.valores=v.split(/[,;\n]+/).map(function(s){return s.trim()}).filter(Boolean);
+    } else if(k==='BOTON' || k==='BOTON DEL ENCABEZADO'){
+      /* Texto del botón guinda de arriba. Escriba NO para quitarlo. */
+      var b=$('.cta');
+      if(b){
+        var s=sinAcentos(v);
+        if(s==='NO'||s==='OCULTO'||s==='APAGADO'||s==='NINGUNO') b.style.display='none';
+        else { b.style.display=''; b.textContent=v; }
+      }
+    } else if(k==='BOTON ENLACE' || k==='BOTON DEL ENCABEZADO ENLACE'){
+      var b2=$('.cta'); if(b2) b2.setAttribute('href', v.trim());
     } else if(mapa[k]){
       C.escuela[mapa[k]]=v;
     }
@@ -1617,15 +1634,27 @@ function aplicarMenu(filas){
 }
 
 /* ---------- SECCIONES ---------- */
+/* Oculta o muestra TODA liga que apunte a #id (boton del encabezado,
+   ligas del pie). Así, al apagar una sección en la pestaña SECCIONES,
+   no quedan botones sueltos que lleven a un lugar que ya no existe. */
+function ligasHacia(id, ocultar){
+  var sel='a[href="#'+id+'"]';
+  Array.prototype.forEach.call(document.querySelectorAll(sel), function(a){
+    if(a.closest && a.closest('#nav')) return;      /* el menú lo maneja la pestaña MENU */
+    a.style.display = ocultar ? 'none' : '';
+  });
+}
 function aplicarSecciones(filas){
   if(!filas||!filas.length) return;
   filas.forEach(function(o){
     var id=val(o,['ID','SECCION','SECCIÓN']);
     if(!id) return;
-    var el=document.getElementById(id.replace(/^#/,''));
+    id=id.replace(/^#/,'');
+    var el=document.getElementById(id);
     if(!el) return;
-    if(!visible(o)){ el.style.display='none'; return; }
+    if(!visible(o)){ el.style.display='none'; ligasHacia(id,true); return; }
     el.style.display='';
+    ligasHacia(id,false);
     var ord=parseFloat(val(o,['ORDEN']));
     if(!isNaN(ord)) el.style.order=ord;
     var tit=val(o,['TITULO','TÍTULO','TITULO QUE SE VE EN EL SITIO']);
@@ -1688,18 +1717,18 @@ function cargarHoja(){
   Promise.all(PESTANAS.map(function(n){return traerPestana(base,n)}))
   .then(function(r){
     var av=r[0],ca=r[1],doc=r[2],ga=r[3],vi=r[4];
-    if(av) C.avisos=av.map(function(o){return {
+    if(av) C.avisos=publicables(av).map(function(o){return {
       fecha:o.FECHA, categoria:o.CATEGORIA, titulo:o.TITULO, texto:o.TEXTO,
       archivo:o.ARCHIVO, archivoTexto:o['TEXTO DEL BOTON']||'Abrir documento' }});
-    if(ca) C.carteles=ca.map(function(o){return {
+    if(ca) C.carteles=publicables(ca).map(function(o){return {
       titulo:o.TITULO, imagen:o.IMAGEN, fecha:o.FECHA, hora:o.HORA, lugar:o.LUGAR,
       categoria:o.CATEGORIA, informes:o.INFORMES, nota:o.NOTA,
       pdf:val(o,['PDF','CONVOCATORIA','ARCHIVO','DOCUMENTO']) }});
-    if(doc) C.documentos=doc.map(function(o){return {
+    if(doc) C.documentos=publicables(doc).map(function(o){return {
       titulo:o.TITULO, tipo:o.TIPO, texto:o.DESCRIPCION, url:o.ARCHIVO }});
-    if(ga) C.galeria=ga.map(function(o){return {
+    if(ga) C.galeria=publicables(ga).map(function(o){return {
       titulo:o.TITULO, categoria:o.CATEGORIA, pie:o['PIE DE FOTO'], imagen:o.IMAGEN }});
-    if(vi) C.videos=vi.map(function(o){return {
+    if(vi) C.videos=publicables(vi).map(function(o){return {
       titulo:o.TITULO, youtube:idYouTube(o['LIGA DE YOUTUBE']), texto:o.DESCRIPCION }});
     /* pestañas nuevas — cada una protegida por separado */
     try{ aplicarTextos(r[5]) }catch(e){}
