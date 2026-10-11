@@ -266,6 +266,11 @@ p{margin:0 0 1rem}
 .doc__ic{width:50px;height:50px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--papel);color:var(--guinda);font-family:var(--dato);font-size:.76rem;font-weight:500}
 .doc b{display:block;font-family:var(--display);font-size:1.14rem;color:var(--guinda)}
 .doc small{color:var(--t45);font-size:.9rem}
+#lista-documentos{align-items:start}
+.doc--cartel{flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden}
+.doc--cartel .doc__img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--papel);display:block;border-bottom:1px solid var(--linea)}
+.doc--cartel .doc__cuerpo{padding:1rem 1.2rem 1.1rem}
+.doc--cartel:hover .doc__img{opacity:.92}
 
 /* cifras */
 .cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}
@@ -1176,6 +1181,17 @@ function pintar(){
   }).join('');
 
   $('#lista-documentos').innerHTML=(C.documentos||[]).map(function(d){
+    var tipo=String(d.tipo||'DOC').trim().toUpperCase();
+    var raw=String(d.url||'').trim();
+    /* CARTEL: ARCHIVO = "imagen.jpg | documento.pdf" (portada + PDF) */
+    if(tipo==='CARTEL' && raw.indexOf('|')>-1){
+      var p=raw.split('|');
+      var img=urlDoc(p[0].trim());
+      var pdf=urlDoc(p[1].trim());
+      return '<a class="doc doc--cartel" href="'+esc(pdf||img||'#')+'">'
+        +'<img class="doc__img" src="'+esc(img)+'" alt="'+esc(d.titulo||'')+'" loading="lazy">'
+        +'<span class="doc__cuerpo"><b>'+txt(d.titulo)+'</b><small>'+txt(d.texto||'')+'</small></span></a>';
+    }
     var u=d.url?urlDoc(d.url):'';
     return '<a class="doc" href="'+esc(u||'#')+'"><span class="doc__ic">'+esc(d.tipo||'DOC')+'</span>'
       +'<span><b>'+txt(d.titulo)+'</b><small>'+txt(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
