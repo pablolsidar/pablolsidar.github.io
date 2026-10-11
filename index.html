@@ -1178,7 +1178,7 @@ function pintar(){
       +(c.categoria?'<li><b>Categoría</b>'+esc(c.categoria)+'</li>':'')
       +(c.informes?'<li><b>Informes</b>'+esc(c.informes)+'</li>':'')
       +'</ul>'+(c.nota?'<p class="pie-nota" style="margin:.4rem 0 0">'+txt(c.nota)+'</p>':'')+'</div></article>';
-  }).join('');
+  }).join('') || '<p class="pie-nota">Por el momento no hay convocatorias abiertas.</p>';
 
   $('#lista-documentos').innerHTML=(C.documentos||[]).map(function(d){
     var tipo=String(d.tipo||'DOC').trim().toUpperCase();
@@ -1195,7 +1195,7 @@ function pintar(){
     var u=d.url?urlDoc(d.url):'';
     return '<a class="doc" href="'+esc(u||'#')+'"><span class="doc__ic">'+esc(d.tipo||'DOC')+'</span>'
       +'<span><b>'+txt(d.titulo)+'</b><small>'+txt(d.texto||'')+(u?'':' · pendiente de cargar')+'</small></span></a>';
-  }).join('');
+  }).join('') || '<p class="pie-nota">Todavía no hay documentos publicados.</p>';
 
   $('#lista-avisos').innerHTML=(C.avisos||[]).map(function(a){
     return '<article class="aviso"><span class="eti">'+esc(a.categoria)+'</span><h3>'+txt(a.titulo)+'</h3>'
@@ -1688,18 +1688,18 @@ function cargarHoja(){
   Promise.all(PESTANAS.map(function(n){return traerPestana(base,n)}))
   .then(function(r){
     var av=r[0],ca=r[1],doc=r[2],ga=r[3],vi=r[4];
-    if(av&&av.length) C.avisos=av.map(function(o){return {
+    if(av) C.avisos=av.map(function(o){return {
       fecha:o.FECHA, categoria:o.CATEGORIA, titulo:o.TITULO, texto:o.TEXTO,
       archivo:o.ARCHIVO, archivoTexto:o['TEXTO DEL BOTON']||'Abrir documento' }});
-    if(ca&&ca.length) C.carteles=ca.map(function(o){return {
+    if(ca) C.carteles=ca.map(function(o){return {
       titulo:o.TITULO, imagen:o.IMAGEN, fecha:o.FECHA, hora:o.HORA, lugar:o.LUGAR,
       categoria:o.CATEGORIA, informes:o.INFORMES, nota:o.NOTA,
       pdf:val(o,['PDF','CONVOCATORIA','ARCHIVO','DOCUMENTO']) }});
-    if(doc&&doc.length) C.documentos=doc.map(function(o){return {
+    if(doc) C.documentos=doc.map(function(o){return {
       titulo:o.TITULO, tipo:o.TIPO, texto:o.DESCRIPCION, url:o.ARCHIVO }});
-    if(ga&&ga.length) C.galeria=ga.map(function(o){return {
+    if(ga) C.galeria=ga.map(function(o){return {
       titulo:o.TITULO, categoria:o.CATEGORIA, pie:o['PIE DE FOTO'], imagen:o.IMAGEN }});
-    if(vi&&vi.length) C.videos=vi.map(function(o){return {
+    if(vi) C.videos=vi.map(function(o){return {
       titulo:o.TITULO, youtube:idYouTube(o['LIGA DE YOUTUBE']), texto:o.DESCRIPCION }});
     /* pestañas nuevas — cada una protegida por separado */
     try{ aplicarTextos(r[5]) }catch(e){}
